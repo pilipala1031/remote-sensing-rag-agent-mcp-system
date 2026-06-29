@@ -1,0 +1,98 @@
+{
+  "questions": [
+    "LoveDA 数据集包含哪些类别？它的空间分辨率是多少？",
+    "iSAID 数据集和 DeepGlobe 有什么区别？分别适合什么任务？",
+    "遥感语义分割任务中，为什么 mIoU 是第一指标而不是 Pixel Accuracy？",
+    "DeepLabV3+ 相比 U-Net 在遥感分割中有什么优势？",
+    "SegFormer 为什么适合高分辨率遥感影像？",
+    "遥感分割中类别极度不平衡怎么办？有哪些损失函数可以选择？",
+    "LoveDA 的 Urban 域模型迁移到 Rural 域性能下降严重，如何缓解？",
+    "遥感影像单张尺寸非常大，推理时如何处理？滑窗推理的 overlap 怎么选？",
+    "如何利用近红外波段提升植被分割效果？",
+    "Focal Loss 和 Dice Loss 分别解决什么问题？应该怎么组合使用？",
+    "遥感分割模型调优时，性价比最高的 3 个技巧是什么？",
+    "Swin-Transformer 作为分割 backbone 的优势是什么？"
+  ],
+  "notes": "questions 覆盖数据集、模型、指标、难点四个维度，建议全部入库后再测试。",
+
+  "agent_advantage_questions": {
+    "purpose": "以下 8 个问题用于演示 Multi-Tool Agent（7 个工具）相对于 Plain RAG 流程的优越性。每个问题对应一个不同的工具优势维度，并标注 Plain RAG 在哪里出问题、Agent + 工具为什么更好。建议用 Agent 模式（/api/agent/query）逐个测试，对照 RAG 模式（/api/chat/query）观察差异。",
+    "summary": "一句话概括：Plain RAG 是「检索一段文本然后让 LLM 自己想办法」，Multi-Tool Agent 是「让 LLM 根据问题类型选择最合适的信息获取方式，并可组合多步完成」。",
+    "items": [
+      {
+        "id": 1,
+        "dimension": "精确计算",
+        "tool": "metrics_calculator",
+        "question": "已知 TP=100, FP=15, FN=25，帮我计算 IoU、Precision、Recall 和 F1-score。",
+        "advantage": "Python 确定性计算，零误差：IoU=0.7143、Precision=0.8696、Recall=0.8000、F1=0.8333（内部含零除数保护）。",
+        "rag_limitation": "LLM 做算术是 token 概率预测而非可靠计算，可能算出 0.72/0.83 甚至弄错分子分母。"
+      },
+      {
+        "id": 2,
+        "dimension": "结构化属性完整性",
+        "tool": "dataset_spec_lookup",
+        "question": "iSAID 数据集的图像来源、空间分辨率、类别数量、标注类型和评价方式分别是什么？",
+        "advantage": "直接从 datasets.json 读取 iSAID 完整条目，所有字段一次性返回，零信息损失。",
+        "rag_limitation": "5 个属性分散在不同段落，文本切分（按字符数）后属性可能被切到不同 chunk，检索只命中其中 2-3 个。"
+      },
+      {
+        "id": 3,
+        "dimension": "零检索延迟",
+        "tool": "dataset_overview",
+        "question": "遥感语义分割数据集相比自然图像数据集，有什么共性特点和特殊难点？",
+        "advantage": "直接返回预编译的领域专家总结常量，零 Embedding 调用、零向量检索，延迟最低。",
+        "rag_limitation": "强制每个问题都走 Embedding + 检索链路，且需从具体数据集碎片中归纳共性，归纳质量取决于检索碰巧命中哪些块。"
+      },
+      {
+        "id": 4,
+        "dimension": "多实体横向对比",
+        "tool": "model_comparison_table",
+        "question": "从编码器结构、感受野机制和解码器设计三个维度，横向对比 FCN、U-Net、DeepLabV3+ 和 PSPNet。",
+        "advantage": "从 models.json 一次性返回全部模型的结构化元数据，天然支持 N 实体 × M 属性交叉对比。",
+        "rag_limitation": "4 模型 × 3 维度 = 12 信息点，单个 embedding 向量无法同时对齐；向量检索本质是「找最相似的块」而非交叉表查询，易遗漏部分模型。"
+      },
+      {
+        "id": 5,
+        "dimension": "公式精确性",
+        "tool": "metric_formula_lookup",
+        "question": "FWIoU 的完整计算公式是什么？它和 mIoU 在加权方式上有什么本质区别？",
+        "advantage": "从 metrics.json 返回 formula / definition / pros / cons 字段，公式以结构化字符串存储，不受文本切分影响。",
+        "rag_limitation": "公式经 Markdown → 文本 → 切分后数学符号可能变形（Σ 编码错误、下标丢失、LaTeX 残缺），LLM 从残缺公式中猜测原始形式。"
+      },
+      {
+        "id": 6,
+        "dimension": "复杂问题分解检索",
+        "tool": "plan_and_search",
+        "question": "对比 U-Net 和 DeepLabV3+ 在 LoveDA 和 Potsdam 两个数据集上的适用性，从模型架构特点和数据集域特性两个角度分析。",
+        "advantage": "LLM 分解为多个聚焦子查询（如「U-Net LoveDA 适用性」）各自检索后合并去重，每个子查询 embedding 更精准，覆盖全部维度。",
+        "rag_limitation": "2 模型 × 2 数据集 × 2 角度 = 8 信息维度，单 embedding 表达力有限，复杂多维度问题必然覆盖不全。"
+      },
+      {
+        "id": 7,
+        "dimension": "工具链式组合",
+        "tool": "dataset_spec_lookup → metric_formula_lookup → metrics_calculator",
+        "question": "iSAID 数据集的评价指标是什么？帮我用 TP=100, FP=15, FN=25 计算这些指标的具体值。",
+        "advantage": "ReAct 循环三步组合：查数据集指标 → 查 mIoU 公式 → 确定性计算数值（IoU=0.7143、F1=0.8333），可「查→理解→计算」多步完成。",
+        "rag_limitation": "固定「检索→生成」流程只能做一步，无法把前一步结果（识别出的指标）指导后一步（计算），最多只能给出公式而无法给数值。"
+      },
+      {
+        "id": 8,
+        "dimension": "泛化到具体推理",
+        "tool": "dataset_overview + dataset_spec_lookup",
+        "question": "遥感数据集通常面临哪些标注挑战？这些挑战在 LoveDA 数据集中具体如何体现？",
+        "advantage": "两步组合推理：先取通用标注挑战（类别不平衡、边界模糊…），再取 LoveDA 具体特性（7 类、0.3m 分辨率…），把归纳与演绎结合。",
+        "rag_limitation": "单次检索无法同时服务「归纳一般性」和「演绎到具体」两种推理，一个 embedding 难以同时表达两个层面。"
+      }
+    ],
+    "coverage_table": [
+      { "example": "1 精确计算",   "core_advantage": "确定性 Python 计算",   "rag_flaw": "LLM token 预测 ≠ 计算器" },
+      { "example": "2 结构化属性", "core_advantage": "完整 JSON 无损失",     "rag_flaw": "文本切分破坏属性完整性" },
+      { "example": "3 零检索延迟", "core_advantage": "跳过 Embedding + 检索", "rag_flaw": "强制每个问题都走检索链路" },
+      { "example": "4 多实体对比", "core_advantage": "结构化表一次返回 N×M",  "rag_flaw": "单 embedding 无法对齐多维交叉表" },
+      { "example": "5 公式精确性", "core_advantage": "结构化存储保真",        "rag_flaw": "Markdown→切分导致公式变形" },
+      { "example": "6 复杂分解",   "core_advantage": "子查询更精准，覆盖更全", "rag_flaw": "单 embedding 表达力有限" },
+      { "example": "7 工具链组合", "core_advantage": "查→理解→计算多步组合",  "rag_flaw": "固定流程只能做一步" },
+      { "example": "8 泛化到具体", "core_advantage": "通用知识 + 具体数据组合推理", "rag_flaw": "单次检索无法同时服务两种推理" }
+    ]
+  }
+}

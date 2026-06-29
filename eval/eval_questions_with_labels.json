@@ -1,0 +1,759 @@
+{
+  "generator": "generate_eval_labels.py",
+  "llm_model": "glm-5.1",
+  "generated_at": "2026-06-25 16:55:18",
+  "label_schema": {
+    "should_refuse": "bool",
+    "required_keywords": "list[str]",
+    "relevant_docs": "list[str]",
+    "question_type": [
+      "basic",
+      "calculation",
+      "comparison",
+      "out_of_scope",
+      "structured"
+    ],
+    "min_answer_length": "int",
+    "expected_tool": [
+      "knowledge_base_search",
+      "dataset_overview",
+      "dataset_spec_lookup",
+      "model_comparison_table",
+      "metric_formula_lookup",
+      "metrics_calculator",
+      "plan_and_search"
+    ],
+    "notes": "str"
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "category": "dataset",
+      "question": "LoveDA 数据集包含哪些地物类别？它的空间分辨率是多少？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "建筑",
+          "道路",
+          "水体",
+          "0.3"
+        ],
+        "relevant_docs": [
+          "01_datasets.md"
+        ],
+        "question_type": "structured",
+        "min_answer_length": 50,
+        "expected_tool": "dataset_spec_lookup",
+        "notes": "需准确指出LoveDA数据集包含的7个具体地物类别（建筑、道路、水体、裸地、林地、农业、背景），并明确其空间分辨率为0.3米。注意：01_datasets.md使用'裸地/林地'，datasets.json使用'贫瘠/森林'，两者为同义翻译。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "建筑",
+        "道路",
+        "水体",
+        "0.3"
+      ],
+      "original_expected_tools": [
+        "dataset_spec_lookup",
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "plan_and_search",
+        "metrics_calculator"
+      ],
+      "original_expected_source_files": [
+        "01_datasets.md"
+      ]
+    },
+    {
+      "id": "q002",
+      "category": "dataset",
+      "question": "iSAID 数据集的实例标注规模有多大？它使用哪些评价指标？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "655,451",
+          "mAP",
+          "mIoU"
+        ],
+        "relevant_docs": [
+          "01_datasets.md",
+          "03_metrics.md"
+        ],
+        "question_type": "structured",
+        "min_answer_length": 50,
+        "expected_tool": "knowledge_base_search",
+        "notes": "评估答案是否准确指出iSAID包含655,451个实例标注（官方数据，iSAID官网及CVPR 2019论文原文），以及是否提及了实例分割/语义分割的评价指标（如mAP用于实例分割、mIoU用于语义分割）。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "实例",
+        "mAP",
+        "mIoU"
+      ],
+      "original_expected_tools": [
+        "dataset_spec_lookup",
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "plan_and_search",
+        "metrics_calculator"
+      ],
+      "original_expected_source_files": [
+        "01_datasets.md"
+      ]
+    },
+    {
+      "id": "q003",
+      "category": "dataset",
+      "question": "DeepGlobe Land Cover 数据集的影像来自哪颗卫星？共有多少类别？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "WorldView-3",
+          "7",
+          "DeepGlobe"
+        ],
+        "relevant_docs": [
+          "01_datasets.md"
+        ],
+        "question_type": "structured",
+        "min_answer_length": 30,
+        "expected_tool": "dataset_spec_lookup",
+        "notes": "这是一个关于特定数据集的结构化属性查询，预期答案需要准确指出采集影像的卫星名称（WorldView-3）以及具体的分类类别数量（7类）。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "WorldView-3",
+        "7"
+      ],
+      "original_expected_tools": [
+        "dataset_spec_lookup",
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "plan_and_search",
+        "metrics_calculator"
+      ],
+      "original_expected_source_files": [
+        "01_datasets.md"
+      ]
+    },
+    {
+      "id": "q004",
+      "category": "model_compare",
+      "question": "请对比 U-Net 和 DeepLabV3+ 的结构特点与适用场景。",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "U-Net",
+          "DeepLabV3+",
+          "编码器",
+          "解码器",
+          "空洞卷积"
+        ],
+        "relevant_docs": [
+          "02_models.md"
+        ],
+        "question_type": "comparison",
+        "min_answer_length": 100,
+        "expected_tool": "model_comparison_table",
+        "notes": "评估答案是否准确对比了U-Net的对称编解码跳跃连接结构与DeepLabV3+的ASPP（空洞空间金字塔池化）结构特点，以及它们在感受野和多尺度特征提取上的不同适用场景。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "跳跃",
+        "ASPP",
+        "空洞"
+      ],
+      "original_expected_tools": [
+        "model_comparison_table",
+        "knowledge_base_search",
+        "plan_and_search"
+      ],
+      "original_unexpected_tools": [
+        "metrics_calculator",
+        "dataset_spec_lookup"
+      ],
+      "original_expected_source_files": [
+        "02_models.md"
+      ]
+    },
+    {
+      "id": "q005",
+      "category": "model_compare",
+      "question": "SegFormer 在遥感分割中的核心优势和适用场景是什么？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "SegFormer",
+          "Transformer",
+          "无位置编码",
+          "多尺度",
+          "MLP"
+        ],
+        "relevant_docs": [
+          "02_models.md"
+        ],
+        "question_type": "basic",
+        "min_answer_length": 100,
+        "expected_tool": "knowledge_base_search",
+        "notes": "答案需准确说明SegFormer作为纯Transformer编码器（无位置编码、可适配任意分辨率）的核心优势，以及轻量MLP解码器和多尺度特征融合效果，及其在遥感影像分割中的具体适用场景（如高分辨率影像、多尺度地物、轻量化部署）。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "Transformer",
+        "位置编码",
+        "MLP"
+      ],
+      "original_expected_tools": [
+        "model_comparison_table",
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "plan_and_search",
+        "metrics_calculator",
+        "dataset_spec_lookup"
+      ],
+      "original_expected_source_files": [
+        "02_models.md"
+      ]
+    },
+    {
+      "id": "q006",
+      "category": "model_compare",
+      "question": "DeepLab 系列模型从 v1 到 v3+ 的核心创新分别有哪些？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "DeepLab",
+          "空洞卷积",
+          "ASPP",
+          "v1",
+          "v3+"
+        ],
+        "relevant_docs": [
+          "02_models.md"
+        ],
+        "question_type": "comparison",
+        "min_answer_length": 100,
+        "expected_tool": "knowledge_base_search",
+        "notes": "答案需分别准确概述DeepLab v1、v2、v3和v3+的核心创新点，重点检查是否提及空洞卷积、ASPP（空洞空间金字塔池化）和编码器-解码器结构等关键概念。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "ASPP",
+        "空洞",
+        "Encoder-Decoder"
+      ],
+      "original_expected_tools": [
+        "model_comparison_table",
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "metrics_calculator",
+        "dataset_spec_lookup"
+      ],
+      "original_expected_source_files": [
+        "02_models.md"
+      ]
+    },
+    {
+      "id": "q007",
+      "category": "metric",
+      "question": "请解释 mIoU 的计算方式，并说明为什么它是遥感语义分割的首选指标。",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "mIoU",
+          "交集",
+          "并集",
+          "类别不平衡",
+          "平均"
+        ],
+        "relevant_docs": [
+          "03_metrics.md"
+        ],
+        "question_type": "basic",
+        "min_answer_length": 150,
+        "expected_tool": "knowledge_base_search",
+        "notes": "答案必须包含mIoU的数学或逻辑计算过程，并指出遥感影像普遍存在的类别极度不平衡现象是将其作为首选评价指标的核心原因。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "mIoU",
+        "IoU",
+        "平均"
+      ],
+      "original_expected_tools": [
+        "metric_formula_lookup",
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "metrics_calculator",
+        "plan_and_search",
+        "dataset_spec_lookup"
+      ],
+      "original_expected_source_files": [
+        "03_metrics.md"
+      ]
+    },
+    {
+      "id": "q008",
+      "category": "metric",
+      "question": "Pixel Accuracy 在遥感分割评测中存在什么局限？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "类别不平衡",
+          "小目标",
+          "背景",
+          "mIoU"
+        ],
+        "relevant_docs": [
+          "03_metrics.md"
+        ],
+        "question_type": "basic",
+        "min_answer_length": 50,
+        "expected_tool": "knowledge_base_search",
+        "notes": "评估Pixel Accuracy（像素准确率）在遥感图像类别不平衡及背景主导情况下的局限性，指出容易被大块背景主导而忽略小目标，答案中应提及通常需要结合mIoU等指标综合评价。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "背景",
+        "大类",
+        "小类"
+      ],
+      "original_expected_tools": [
+        "metric_formula_lookup",
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "metrics_calculator",
+        "plan_and_search",
+        "dataset_spec_lookup"
+      ],
+      "original_expected_source_files": [
+        "03_metrics.md"
+      ]
+    },
+    {
+      "id": "q009",
+      "category": "challenge",
+      "question": "遥感分割中类别极度不平衡问题有哪些常用对策？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "Focal",
+          "Dice",
+          "加权",
+          "采样"
+        ],
+        "relevant_docs": [
+          "04_challenges.md",
+          "06_training_recipes.md"
+        ],
+        "question_type": "basic",
+        "min_answer_length": 50,
+        "expected_tool": "knowledge_base_search",
+        "notes": "评估答案是否涵盖了数据层（过采样/类平衡采样）、损失层（加权CE、Focal Loss、Dice Loss、混合损失）以及难样本挖掘（OHEM）等解决策略。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "Focal",
+        "Dice",
+        "加权"
+      ],
+      "original_expected_tools": [
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "metrics_calculator",
+        "dataset_spec_lookup"
+      ],
+      "original_expected_source_files": [
+        "04_challenges.md"
+      ]
+    },
+    {
+      "id": "q010",
+      "category": "challenge",
+      "question": "遥感影像分割的边界模糊问题如何缓解？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "Boundary Loss",
+          "CRF",
+          "边界",
+          "后处理"
+        ],
+        "relevant_docs": [
+          "04_challenges.md",
+          "02_models.md"
+        ],
+        "question_type": "basic",
+        "min_answer_length": 50,
+        "expected_tool": "knowledge_base_search",
+        "notes": "评估模型是否给出了缓解遥感影像分割边界模糊问题的有效方法，如Boundary Loss（边界损失）、CRF后处理、边界感知特征分支、高分辨率特征保留（skip connection）等。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "Boundary",
+        "CRF",
+        "边界"
+      ],
+      "original_expected_tools": [
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "metrics_calculator",
+        "dataset_spec_lookup"
+      ],
+      "original_expected_source_files": [
+        "04_challenges.md"
+      ]
+    },
+    {
+      "id": "q011",
+      "category": "loss",
+      "question": "Focal Loss 的原理是什么？γ 参数通常取多少？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "类别不平衡",
+          "难分",
+          "降权",
+          "2"
+        ],
+        "relevant_docs": [
+          "06_training_recipes.md",
+          "04_challenges.md"
+        ],
+        "question_type": "basic",
+        "min_answer_length": 50,
+        "expected_tool": "knowledge_base_search",
+        "notes": "考察Focal Loss在解决遥感图像类别不平衡问题中的原理。评估时需确认答案解释了通过(1-p_t)^γ对易分样本降权使得模型聚焦难分类样本，并且明确指出γ参数通常取值为2。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "Focal",
+        "难分",
+        "2"
+      ],
+      "original_expected_tools": [
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "metrics_calculator",
+        "dataset_spec_lookup"
+      ],
+      "original_expected_source_files": [
+        "04_challenges.md"
+      ]
+    },
+    {
+      "id": "q012",
+      "category": "loss",
+      "question": "Dice Loss 与交叉熵混合损失在分割任务中为什么常用？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "Dice Loss",
+          "交叉熵",
+          "类别不平衡",
+          "优化"
+        ],
+        "relevant_docs": [
+          "06_training_recipes.md",
+          "04_challenges.md"
+        ],
+        "question_type": "basic",
+        "min_answer_length": 50,
+        "expected_tool": "knowledge_base_search",
+        "notes": "考察混合损失函数的基本原理。Dice Loss有助于缓解类别不平衡问题（直接优化IoU类指标，对小类敏感），而交叉熵能提供更平滑的梯度以加速优化收敛，两者互补。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "Dice",
+        "IoU",
+        "CE"
+      ],
+      "original_expected_tools": [
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "metrics_calculator",
+        "dataset_spec_lookup"
+      ],
+      "original_expected_source_files": [
+        "04_challenges.md"
+      ]
+    },
+    {
+      "id": "q_out_001",
+      "category": "out_of_scope",
+      "question": "请介绍 Transformer 在机器翻译中的 BLEU 计算细节",
+      "eval_labels": {
+        "should_refuse": true,
+        "required_keywords": [],
+        "relevant_docs": [],
+        "question_type": "out_of_scope",
+        "min_answer_length": 20,
+        "expected_tool": "knowledge_base_search",
+        "notes": "问题属于自然语言处理和机器翻译领域，与遥感语义分割无关。Agent应直接拒绝回答并提示该问题超出当前知识库领域范围。"
+      },
+      "human_verified": true
+    },
+    {
+      "id": "q_out_002",
+      "category": "out_of_scope",
+      "question": "如何在 Linux 服务器上安装并配置 Nginx 反向代理？",
+      "eval_labels": {
+        "should_refuse": true,
+        "required_keywords": [],
+        "relevant_docs": [],
+        "question_type": "out_of_scope",
+        "min_answer_length": 20,
+        "expected_tool": "knowledge_base_search",
+        "notes": "该问题是关于Linux系统下Nginx反向代理的配置，属于通用IT运维领域，完全超出了遥感语义分割及模型部署的业务范畴。Agent应直接拒绝回答或提示该问题不在当前知识库覆盖范围内。"
+      },
+      "human_verified": true
+    },
+    {
+      "id": "q_out_003",
+      "category": "out_of_scope",
+      "question": "请详细介绍 ImageNet 数据集的图像分类评测协议和 top-1 / top-5 accuracy 的计算方式",
+      "eval_labels": {
+        "should_refuse": true,
+        "required_keywords": [],
+        "relevant_docs": [],
+        "question_type": "out_of_scope",
+        "min_answer_length": 20,
+        "expected_tool": "knowledge_base_search",
+        "notes": "问题询问的是通用计算机视觉领域的ImageNet数据集及图像分类评测协议，完全超出了遥感语义分割领域的范围，Agent应直接拒答并提示该问题超出领域。"
+      },
+      "human_verified": true
+    },
+    {
+      "id": "q013",
+      "category": "tool_dataset",
+      "question": "LoveDA 数据集有哪些类别？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "建筑",
+          "道路",
+          "水体",
+          "背景",
+          "7"
+        ],
+        "relevant_docs": [
+          "01_datasets.md"
+        ],
+        "question_type": "structured",
+        "min_answer_length": 50,
+        "expected_tool": "dataset_spec_lookup",
+        "notes": "答案需要列出LoveDA数据集的7个具体类别。注意：01_datasets.md使用'裸地/林地'，datasets.json使用'贫瘠/森林'，两者为同义翻译。关键词选用两套数据源中一致的中文类名。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "建筑",
+        "道路",
+        "水体",
+        "7"
+      ],
+      "original_expected_tools": [
+        "dataset_spec_lookup"
+      ],
+      "original_unexpected_tools": [
+        "plan_and_search",
+        "knowledge_base_search"
+      ]
+    },
+    {
+      "id": "q014",
+      "category": "tool_metric_formula",
+      "question": "mIoU 是什么？为什么比 Pixel Accuracy 更适合分割任务？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "mIoU",
+          "Pixel Accuracy",
+          "类别不平衡",
+          "交并比",
+          "小目标"
+        ],
+        "relevant_docs": [
+          "03_metrics.md"
+        ],
+        "question_type": "basic",
+        "min_answer_length": 100,
+        "expected_tool": "metric_formula_lookup",
+        "notes": "需要准确解释mIoU（平均交并比）的概念，并指出像素准确率无法反映类别不平衡情况（背景像素远多于前景），从而在评估小目标分割时具有欺骗性。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "mIoU",
+        "IoU",
+        "平均",
+        "Pixel Accuracy"
+      ],
+      "original_expected_tools": [
+        "metric_formula_lookup",
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "metrics_calculator",
+        "plan_and_search",
+        "dataset_spec_lookup"
+      ]
+    },
+    {
+      "id": "q015",
+      "category": "tool_metric_calc",
+      "question": "已知 TP=80, FP=10, FN=20，帮我计算 IoU。",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "IoU",
+          "TP",
+          "FP",
+          "FN",
+          "0.7273"
+        ],
+        "relevant_docs": [
+          "03_metrics.md"
+        ],
+        "question_type": "calculation",
+        "min_answer_length": 30,
+        "expected_tool": "metrics_calculator",
+        "notes": "需要正确应用IoU计算公式：TP / (TP + FP + FN)，代入数据得出 80 / (80 + 10 + 20) = 0.7273（或72.73%）。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "0.7273",
+        "72.73",
+        "IoU"
+      ],
+      "original_expected_tools": [
+        "metrics_calculator"
+      ],
+      "original_unexpected_tools": [
+        "plan_and_search",
+        "knowledge_base_search",
+        "dataset_spec_lookup",
+        "metric_formula_lookup"
+      ]
+    },
+    {
+      "id": "q016",
+      "category": "tool_model_compare",
+      "question": "比较 U-Net 和 DeepLabV3+ 在遥感语义分割中的优缺点。",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "U-Net",
+          "DeepLabV3+",
+          "编码器",
+          "感受野",
+          "多尺度"
+        ],
+        "relevant_docs": [
+          "02_models.md",
+          "05_benchmarks.md"
+        ],
+        "question_type": "comparison",
+        "min_answer_length": 100,
+        "expected_tool": "model_comparison_table",
+        "notes": "答案需明确对比两者结构差异（如U-Net的对称编解码与跳跃连接 vs DeepLab的ASPP模块），以及它们在处理遥感图像多尺度目标和边界精度上的优缺点。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "ASPP",
+        "跳跃",
+        "编码"
+      ],
+      "original_expected_tools": [
+        "model_comparison_table"
+      ],
+      "original_unexpected_tools": [
+        "metrics_calculator",
+        "dataset_spec_lookup"
+      ]
+    },
+    {
+      "id": "q017",
+      "category": "tool_complex",
+      "question": "对比 DeepLabV3+ 和 SegFormer 在 LoveDA 数据集上的架构差异和可能的表现差异。",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "DeepLabV3+",
+          "SegFormer",
+          "LoveDA",
+          "ASPP",
+          "Transformer"
+        ],
+        "relevant_docs": [
+          "02_models.md",
+          "05_benchmarks.md",
+          "01_datasets.md"
+        ],
+        "question_type": "comparison",
+        "min_answer_length": 150,
+        "expected_tool": "model_comparison_table",
+        "notes": "答案需准确指出DeepLabV3+基于CNN和ASPP模块，而SegFormer基于无位置编码的Transformer编码器。并结合LoveDA数据集的城乡差异大、尺度多变的特点，分析两者在表现上的优劣。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "ASPP",
+        "Transformer",
+        "SegFormer"
+      ],
+      "original_expected_tools": [
+        "plan_and_search",
+        "model_comparison_table"
+      ],
+      "original_unexpected_tools": [
+        "metrics_calculator",
+        "dataset_spec_lookup"
+      ]
+    },
+    {
+      "id": "q018",
+      "category": "tool_dataset_overview",
+      "question": "语义分割数据集有什么特点和共性？",
+      "eval_labels": {
+        "should_refuse": false,
+        "required_keywords": [
+          "标注成本",
+          "类别不平衡",
+          "分辨率",
+          "尺度变化"
+        ],
+        "relevant_docs": [
+          "01_datasets.md"
+        ],
+        "question_type": "basic",
+        "min_answer_length": 100,
+        "expected_tool": "dataset_overview",
+        "notes": "考察Agent对数据集宏观概念的理解。答案应概括遥感语义分割数据集的基本特征，如高空间分辨率、多类别地物覆盖、类别不平衡、尺度变化明显、像素级密集标注、标注成本高等共性特点。"
+      },
+      "human_verified": true,
+      "original_expected_keywords": [
+        "类别",
+        "分辨率",
+        "标注"
+      ],
+      "original_expected_tools": [
+        "dataset_overview",
+        "knowledge_base_search"
+      ],
+      "original_unexpected_tools": [
+        "plan_and_search",
+        "dataset_spec_lookup",
+        "metrics_calculator"
+      ]
+    }
+  ]
+}

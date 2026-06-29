@@ -1,0 +1,31 @@
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.6.0
+pydantic-settings>=2.2.0
+python-dotenv>=1.0.0
+python-multipart>=0.0.9
+
+# LangChain 1.0+
+langchain>=1.0.0
+langchain-core>=1.0.0
+langchain-text-splitters>=0.2.0
+langchain-openai>=0.3.0
+
+# Embedding & LLM
+openai>=1.14.0
+requests>=2.31.0
+
+# Vector store
+chromadb>=0.4.24
+
+# Document parsing
+pypdf>=4.0.0
+
+# Frontend
+streamlit>=1.32.0
+
+# MCP Server
+mcp>=1.0.0
+
+# Tests
+pytest>=8.0.0

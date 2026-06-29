@@ -1,0 +1,2040 @@
+{
+  "stage": "chunk_ablation",
+  "configs": {
+    "c400_o80": {
+      "config": {
+        "name": "c400_o80",
+        "chunk_size": 400,
+        "chunk_overlap": 80
+      },
+      "details": [
+        {
+          "question_id": "q001",
+          "question": "LoveDA 数据集包含哪些地物类别？它的空间分辨率是多少？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "07_frameworks.md",
+            "01_datasets.md",
+            "01_datasets.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.631,
+          "avg_score": 0.6239,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1292
+        },
+        {
+          "question_id": "q002",
+          "question": "iSAID 数据集的实例标注规模有多大？它使用哪些评价指标？",
+          "expected_source_files": [
+            "01_datasets.md",
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.6419,
+          "avg_score": 0.5943,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1111
+        },
+        {
+          "question_id": "q003",
+          "question": "DeepGlobe Land Cover 数据集的影像来自哪颗卫星？共有多少类别？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "01_datasets.md",
+            "01_datasets.md",
+            "09_other_rs_tasks.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.7222,
+          "avg_score": 0.5991,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1146
+        },
+        {
+          "question_id": "q004",
+          "question": "请对比 U-Net 和 DeepLabV3+ 的结构特点与适用场景。",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "05_benchmarks.md",
+            "02_models.md",
+            "06_training_recipes.md",
+            "02_models.md"
+          ],
+          "top_score": 0.6237,
+          "avg_score": 0.6104,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.108
+        },
+        {
+          "question_id": "q005",
+          "question": "SegFormer 在遥感分割中的核心优势和适用场景是什么？",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.6347,
+          "avg_score": 0.6025,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1273
+        },
+        {
+          "question_id": "q006",
+          "question": "DeepLab 系列模型从 v1 到 v3+ 的核心创新分别有哪些？",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "06_training_recipes.md",
+            "09_other_rs_tasks.md"
+          ],
+          "top_score": 0.6809,
+          "avg_score": 0.6119,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1034
+        },
+        {
+          "question_id": "q007",
+          "question": "请解释 mIoU 的计算方式，并说明为什么它是遥感语义分割的首选指标。",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "03_metrics.md",
+            "03_metrics.md",
+            "05_benchmarks.md",
+            "03_metrics.md"
+          ],
+          "top_score": 0.7535,
+          "avg_score": 0.6725,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1431
+        },
+        {
+          "question_id": "q008",
+          "question": "Pixel Accuracy 在遥感分割评测中存在什么局限？",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "08_frontier_trends.md",
+            "03_metrics.md",
+            "08_frontier_trends.md",
+            "03_metrics.md"
+          ],
+          "top_score": 0.6535,
+          "avg_score": 0.6143,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.3333,
+          "retrieved_count": 5,
+          "latency": 0.1056
+        },
+        {
+          "question_id": "q009",
+          "question": "遥感分割中类别极度不平衡问题有哪些常用对策？",
+          "expected_source_files": [
+            "04_challenges.md",
+            "06_training_recipes.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "04_challenges.md",
+            "09_other_rs_tasks.md",
+            "04_challenges.md",
+            "04_challenges.md"
+          ],
+          "top_score": 0.6762,
+          "avg_score": 0.641,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1005
+        },
+        {
+          "question_id": "q010",
+          "question": "遥感影像分割的边界模糊问题如何缓解？",
+          "expected_source_files": [
+            "04_challenges.md",
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "04_challenges.md",
+            "04_challenges.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.7025,
+          "avg_score": 0.6629,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.11
+        },
+        {
+          "question_id": "q011",
+          "question": "Focal Loss 的原理是什么？γ 参数通常取多少？",
+          "expected_source_files": [
+            "06_training_recipes.md",
+            "04_challenges.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "04_challenges.md",
+            "06_training_recipes.md",
+            "06_training_recipes.md",
+            "10_deployment.md"
+          ],
+          "top_score": 0.6067,
+          "avg_score": 0.5599,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1106
+        },
+        {
+          "question_id": "q012",
+          "question": "Dice Loss 与交叉熵混合损失在分割任务中为什么常用？",
+          "expected_source_files": [
+            "06_training_recipes.md",
+            "04_challenges.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "04_challenges.md",
+            "07_frameworks.md",
+            "06_training_recipes.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.6729,
+          "avg_score": 0.617,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1091
+        },
+        {
+          "question_id": "q013",
+          "question": "LoveDA 数据集有哪些类别？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "07_frameworks.md",
+            "07_frameworks.md",
+            "01_datasets.md",
+            "07_frameworks.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.69,
+          "avg_score": 0.6308,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.3333,
+          "retrieved_count": 5,
+          "latency": 0.1106
+        },
+        {
+          "question_id": "q014",
+          "question": "mIoU 是什么？为什么比 Pixel Accuracy 更适合分割任务？",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "03_metrics.md",
+            "01_datasets.md",
+            "03_metrics.md",
+            "07_frameworks.md"
+          ],
+          "top_score": 0.617,
+          "avg_score": 0.5922,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1147
+        },
+        {
+          "question_id": "q015",
+          "question": "已知 TP=80, FP=10, FN=20，帮我计算 IoU。",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "07_frameworks.md",
+            "05_benchmarks.md",
+            "03_metrics.md",
+            "07_frameworks.md"
+          ],
+          "top_score": 0.5642,
+          "avg_score": 0.5416,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1126
+        },
+        {
+          "question_id": "q016",
+          "question": "比较 U-Net 和 DeepLabV3+ 在遥感语义分割中的优缺点。",
+          "expected_source_files": [
+            "02_models.md",
+            "05_benchmarks.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "02_models.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md",
+            "09_other_rs_tasks.md"
+          ],
+          "top_score": 0.6767,
+          "avg_score": 0.6287,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.107
+        },
+        {
+          "question_id": "q017",
+          "question": "对比 DeepLabV3+ 和 SegFormer 在 LoveDA 数据集上的架构差异和可能的表现差异。",
+          "expected_source_files": [
+            "02_models.md",
+            "05_benchmarks.md",
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "02_models.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.6954,
+          "avg_score": 0.621,
+          "source_hit": 1,
+          "source_recall_at_k": 0.6667,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1027
+        },
+        {
+          "question_id": "q018",
+          "question": "语义分割数据集有什么特点和共性？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "07_frameworks.md",
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "02_models.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.6473,
+          "avg_score": 0.633,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1054
+        }
+      ],
+      "summary": {
+        "source_hit_rate": 1.0,
+        "source_recall_at_k": 0.8704,
+        "mrr": 0.8704,
+        "avg_top_score": 0.6606,
+        "avg_score": 0.6143,
+        "avg_retrieved_count": 5.0,
+        "avg_latency": 0.1125,
+        "latency_norm": 0.0253,
+        "retrieval_score": 0.863
+      }
+    },
+    "c600_o100": {
+      "config": {
+        "name": "c600_o100",
+        "chunk_size": 600,
+        "chunk_overlap": 100
+      },
+      "details": [
+        {
+          "question_id": "q001",
+          "question": "LoveDA 数据集包含哪些地物类别？它的空间分辨率是多少？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "01_datasets.md",
+            "07_frameworks.md",
+            "01_datasets.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.7277,
+          "avg_score": 0.6299,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1226
+        },
+        {
+          "question_id": "q002",
+          "question": "iSAID 数据集的实例标注规模有多大？它使用哪些评价指标？",
+          "expected_source_files": [
+            "01_datasets.md",
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.6421,
+          "avg_score": 0.6095,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1218
+        },
+        {
+          "question_id": "q003",
+          "question": "DeepGlobe Land Cover 数据集的影像来自哪颗卫星？共有多少类别？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "01_datasets.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.674,
+          "avg_score": 0.5834,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1104
+        },
+        {
+          "question_id": "q004",
+          "question": "请对比 U-Net 和 DeepLabV3+ 的结构特点与适用场景。",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "05_benchmarks.md",
+            "02_models.md",
+            "02_models.md",
+            "02_models.md",
+            "06_training_recipes.md"
+          ],
+          "top_score": 0.6487,
+          "avg_score": 0.6178,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1033
+        },
+        {
+          "question_id": "q005",
+          "question": "SegFormer 在遥感分割中的核心优势和适用场景是什么？",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.6345,
+          "avg_score": 0.595,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1062
+        },
+        {
+          "question_id": "q006",
+          "question": "DeepLab 系列模型从 v1 到 v3+ 的核心创新分别有哪些？",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "05_benchmarks.md",
+            "09_other_rs_tasks.md",
+            "05_benchmarks.md",
+            "06_training_recipes.md"
+          ],
+          "top_score": 0.6821,
+          "avg_score": 0.6041,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1187
+        },
+        {
+          "question_id": "q007",
+          "question": "请解释 mIoU 的计算方式，并说明为什么它是遥感语义分割的首选指标。",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "03_metrics.md",
+            "03_metrics.md",
+            "05_benchmarks.md",
+            "07_frameworks.md"
+          ],
+          "top_score": 0.7446,
+          "avg_score": 0.6647,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.111
+        },
+        {
+          "question_id": "q008",
+          "question": "Pixel Accuracy 在遥感分割评测中存在什么局限？",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "03_metrics.md",
+            "09_other_rs_tasks.md",
+            "03_metrics.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.6692,
+          "avg_score": 0.6123,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1011
+        },
+        {
+          "question_id": "q009",
+          "question": "遥感分割中类别极度不平衡问题有哪些常用对策？",
+          "expected_source_files": [
+            "04_challenges.md",
+            "06_training_recipes.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "04_challenges.md",
+            "04_challenges.md",
+            "03_metrics.md",
+            "09_other_rs_tasks.md"
+          ],
+          "top_score": 0.7276,
+          "avg_score": 0.6516,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1261
+        },
+        {
+          "question_id": "q010",
+          "question": "遥感影像分割的边界模糊问题如何缓解？",
+          "expected_source_files": [
+            "04_challenges.md",
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "04_challenges.md",
+            "04_challenges.md",
+            "08_frontier_trends.md",
+            "09_other_rs_tasks.md"
+          ],
+          "top_score": 0.7259,
+          "avg_score": 0.6655,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1028
+        },
+        {
+          "question_id": "q011",
+          "question": "Focal Loss 的原理是什么？γ 参数通常取多少？",
+          "expected_source_files": [
+            "06_training_recipes.md",
+            "04_challenges.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "06_training_recipes.md",
+            "03_metrics.md",
+            "10_deployment.md",
+            "06_training_recipes.md"
+          ],
+          "top_score": 0.5975,
+          "avg_score": 0.5564,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.113
+        },
+        {
+          "question_id": "q012",
+          "question": "Dice Loss 与交叉熵混合损失在分割任务中为什么常用？",
+          "expected_source_files": [
+            "06_training_recipes.md",
+            "04_challenges.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "06_training_recipes.md",
+            "08_frontier_trends.md",
+            "07_frameworks.md",
+            "09_other_rs_tasks.md"
+          ],
+          "top_score": 0.6939,
+          "avg_score": 0.6073,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.112
+        },
+        {
+          "question_id": "q013",
+          "question": "LoveDA 数据集有哪些类别？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "07_frameworks.md",
+            "07_frameworks.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.6701,
+          "avg_score": 0.6135,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1055
+        },
+        {
+          "question_id": "q014",
+          "question": "mIoU 是什么？为什么比 Pixel Accuracy 更适合分割任务？",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "07_frameworks.md",
+            "01_datasets.md",
+            "03_metrics.md",
+            "03_metrics.md"
+          ],
+          "top_score": 0.6113,
+          "avg_score": 0.588,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1057
+        },
+        {
+          "question_id": "q015",
+          "question": "已知 TP=80, FP=10, FN=20，帮我计算 IoU。",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "07_frameworks.md",
+            "03_metrics.md",
+            "03_metrics.md",
+            "03_metrics.md",
+            "03_metrics.md"
+          ],
+          "top_score": 0.5494,
+          "avg_score": 0.5283,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1006
+        },
+        {
+          "question_id": "q016",
+          "question": "比较 U-Net 和 DeepLabV3+ 在遥感语义分割中的优缺点。",
+          "expected_source_files": [
+            "02_models.md",
+            "05_benchmarks.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "02_models.md",
+            "08_frontier_trends.md",
+            "09_other_rs_tasks.md",
+            "04_challenges.md"
+          ],
+          "top_score": 0.6774,
+          "avg_score": 0.6322,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1083
+        },
+        {
+          "question_id": "q017",
+          "question": "对比 DeepLabV3+ 和 SegFormer 在 LoveDA 数据集上的架构差异和可能的表现差异。",
+          "expected_source_files": [
+            "02_models.md",
+            "05_benchmarks.md",
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "02_models.md",
+            "08_frontier_trends.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.6282,
+          "avg_score": 0.6026,
+          "source_hit": 1,
+          "source_recall_at_k": 0.6667,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1083
+        },
+        {
+          "question_id": "q018",
+          "question": "语义分割数据集有什么特点和共性？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "07_frameworks.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "02_models.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.647,
+          "avg_score": 0.6309,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.2,
+          "retrieved_count": 5,
+          "latency": 0.1138
+        }
+      ],
+      "summary": {
+        "source_hit_rate": 1.0,
+        "source_recall_at_k": 0.8148,
+        "mrr": 0.8444,
+        "avg_top_score": 0.664,
+        "avg_score": 0.6107,
+        "avg_retrieved_count": 5.0,
+        "avg_latency": 0.1106,
+        "latency_norm": 0.0,
+        "retrieval_score": 0.8468
+      }
+    },
+    "c800_o120": {
+      "config": {
+        "name": "c800_o120",
+        "chunk_size": 800,
+        "chunk_overlap": 120
+      },
+      "details": [
+        {
+          "question_id": "q001",
+          "question": "LoveDA 数据集包含哪些地物类别？它的空间分辨率是多少？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "07_frameworks.md",
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.7231,
+          "avg_score": 0.6298,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1252
+        },
+        {
+          "question_id": "q002",
+          "question": "iSAID 数据集的实例标注规模有多大？它使用哪些评价指标？",
+          "expected_source_files": [
+            "01_datasets.md",
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "05_benchmarks.md",
+            "01_datasets.md",
+            "01_datasets.md",
+            "01_datasets.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.6477,
+          "avg_score": 0.579,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1117
+        },
+        {
+          "question_id": "q003",
+          "question": "DeepGlobe Land Cover 数据集的影像来自哪颗卫星？共有多少类别？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "01_datasets.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.6742,
+          "avg_score": 0.5829,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.102
+        },
+        {
+          "question_id": "q004",
+          "question": "请对比 U-Net 和 DeepLabV3+ 的结构特点与适用场景。",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "05_benchmarks.md",
+            "02_models.md",
+            "06_training_recipes.md",
+            "05_benchmarks.md",
+            "09_other_rs_tasks.md"
+          ],
+          "top_score": 0.6315,
+          "avg_score": 0.5906,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1083
+        },
+        {
+          "question_id": "q005",
+          "question": "SegFormer 在遥感分割中的核心优势和适用场景是什么？",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "02_models.md",
+            "02_models.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.6466,
+          "avg_score": 0.6065,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1104
+        },
+        {
+          "question_id": "q006",
+          "question": "DeepLab 系列模型从 v1 到 v3+ 的核心创新分别有哪些？",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "09_other_rs_tasks.md",
+            "06_training_recipes.md",
+            "05_benchmarks.md",
+            "02_models.md"
+          ],
+          "top_score": 0.6787,
+          "avg_score": 0.5894,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.11
+        },
+        {
+          "question_id": "q007",
+          "question": "请解释 mIoU 的计算方式，并说明为什么它是遥感语义分割的首选指标。",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "03_metrics.md",
+            "03_metrics.md",
+            "05_benchmarks.md",
+            "04_challenges.md"
+          ],
+          "top_score": 0.7427,
+          "avg_score": 0.6771,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1074
+        },
+        {
+          "question_id": "q008",
+          "question": "Pixel Accuracy 在遥感分割评测中存在什么局限？",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "03_metrics.md",
+            "09_other_rs_tasks.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.6687,
+          "avg_score": 0.6277,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1065
+        },
+        {
+          "question_id": "q009",
+          "question": "遥感分割中类别极度不平衡问题有哪些常用对策？",
+          "expected_source_files": [
+            "04_challenges.md",
+            "06_training_recipes.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "09_other_rs_tasks.md",
+            "04_challenges.md",
+            "04_challenges.md",
+            "03_metrics.md"
+          ],
+          "top_score": 0.6672,
+          "avg_score": 0.6411,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1295
+        },
+        {
+          "question_id": "q010",
+          "question": "遥感影像分割的边界模糊问题如何缓解？",
+          "expected_source_files": [
+            "04_challenges.md",
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "04_challenges.md",
+            "04_challenges.md",
+            "09_other_rs_tasks.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.7307,
+          "avg_score": 0.6667,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1018
+        },
+        {
+          "question_id": "q011",
+          "question": "Focal Loss 的原理是什么？γ 参数通常取多少？",
+          "expected_source_files": [
+            "06_training_recipes.md",
+            "04_challenges.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "06_training_recipes.md",
+            "06_training_recipes.md",
+            "06_training_recipes.md",
+            "09_other_rs_tasks.md"
+          ],
+          "top_score": 0.6074,
+          "avg_score": 0.5708,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1101
+        },
+        {
+          "question_id": "q012",
+          "question": "Dice Loss 与交叉熵混合损失在分割任务中为什么常用？",
+          "expected_source_files": [
+            "06_training_recipes.md",
+            "04_challenges.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "04_challenges.md",
+            "06_training_recipes.md",
+            "08_frontier_trends.md",
+            "07_frameworks.md"
+          ],
+          "top_score": 0.6631,
+          "avg_score": 0.5969,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1043
+        },
+        {
+          "question_id": "q013",
+          "question": "LoveDA 数据集有哪些类别？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "07_frameworks.md",
+            "07_frameworks.md",
+            "05_benchmarks.md",
+            "06_training_recipes.md"
+          ],
+          "top_score": 0.6707,
+          "avg_score": 0.5928,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1104
+        },
+        {
+          "question_id": "q014",
+          "question": "mIoU 是什么？为什么比 Pixel Accuracy 更适合分割任务？",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "03_metrics.md",
+            "07_frameworks.md",
+            "04_challenges.md",
+            "03_metrics.md"
+          ],
+          "top_score": 0.6164,
+          "avg_score": 0.5733,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1072
+        },
+        {
+          "question_id": "q015",
+          "question": "已知 TP=80, FP=10, FN=20，帮我计算 IoU。",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "07_frameworks.md",
+            "05_benchmarks.md",
+            "03_metrics.md",
+            "06_training_recipes.md"
+          ],
+          "top_score": 0.5717,
+          "avg_score": 0.5238,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1176
+        },
+        {
+          "question_id": "q016",
+          "question": "比较 U-Net 和 DeepLabV3+ 在遥感语义分割中的优缺点。",
+          "expected_source_files": [
+            "02_models.md",
+            "05_benchmarks.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "02_models.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md",
+            "09_other_rs_tasks.md"
+          ],
+          "top_score": 0.6507,
+          "avg_score": 0.624,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1058
+        },
+        {
+          "question_id": "q017",
+          "question": "对比 DeepLabV3+ 和 SegFormer 在 LoveDA 数据集上的架构差异和可能的表现差异。",
+          "expected_source_files": [
+            "02_models.md",
+            "05_benchmarks.md",
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "02_models.md",
+            "08_frontier_trends.md",
+            "02_models.md",
+            "02_models.md"
+          ],
+          "top_score": 0.6115,
+          "avg_score": 0.5875,
+          "source_hit": 1,
+          "source_recall_at_k": 0.3333,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1154
+        },
+        {
+          "question_id": "q018",
+          "question": "语义分割数据集有什么特点和共性？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "07_frameworks.md",
+            "02_models.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.6546,
+          "avg_score": 0.6317,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.2,
+          "retrieved_count": 5,
+          "latency": 0.108
+        }
+      ],
+      "summary": {
+        "source_hit_rate": 1.0,
+        "source_recall_at_k": 0.8241,
+        "mrr": 0.8444,
+        "avg_top_score": 0.6587,
+        "avg_score": 0.6051,
+        "avg_retrieved_count": 5.0,
+        "avg_latency": 0.1106,
+        "latency_norm": 0.0,
+        "retrieval_score": 0.8486
+      }
+    },
+    "c1000_o150": {
+      "config": {
+        "name": "c1000_o150",
+        "chunk_size": 1000,
+        "chunk_overlap": 150
+      },
+      "details": [
+        {
+          "question_id": "q001",
+          "question": "LoveDA 数据集包含哪些地物类别？它的空间分辨率是多少？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "01_datasets.md",
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "07_frameworks.md"
+          ],
+          "top_score": 0.7232,
+          "avg_score": 0.6206,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1284
+        },
+        {
+          "question_id": "q002",
+          "question": "iSAID 数据集的实例标注规模有多大？它使用哪些评价指标？",
+          "expected_source_files": [
+            "01_datasets.md",
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "01_datasets.md",
+            "01_datasets.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.6372,
+          "avg_score": 0.5693,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1592
+        },
+        {
+          "question_id": "q003",
+          "question": "DeepGlobe Land Cover 数据集的影像来自哪颗卫星？共有多少类别？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "01_datasets.md",
+            "01_datasets.md",
+            "01_datasets.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.6546,
+          "avg_score": 0.5618,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1079
+        },
+        {
+          "question_id": "q004",
+          "question": "请对比 U-Net 和 DeepLabV3+ 的结构特点与适用场景。",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "05_benchmarks.md",
+            "02_models.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "06_training_recipes.md"
+          ],
+          "top_score": 0.6145,
+          "avg_score": 0.5836,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1144
+        },
+        {
+          "question_id": "q005",
+          "question": "SegFormer 在遥感分割中的核心优势和适用场景是什么？",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "08_frontier_trends.md",
+            "02_models.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.6715,
+          "avg_score": 0.6097,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1056
+        },
+        {
+          "question_id": "q006",
+          "question": "DeepLab 系列模型从 v1 到 v3+ 的核心创新分别有哪些？",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "06_training_recipes.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.6778,
+          "avg_score": 0.5865,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1069
+        },
+        {
+          "question_id": "q007",
+          "question": "请解释 mIoU 的计算方式，并说明为什么它是遥感语义分割的首选指标。",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "03_metrics.md",
+            "05_benchmarks.md",
+            "04_challenges.md",
+            "07_frameworks.md"
+          ],
+          "top_score": 0.7373,
+          "avg_score": 0.6653,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1093
+        },
+        {
+          "question_id": "q008",
+          "question": "Pixel Accuracy 在遥感分割评测中存在什么局限？",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "09_other_rs_tasks.md",
+            "08_frontier_trends.md",
+            "04_challenges.md",
+            "03_metrics.md"
+          ],
+          "top_score": 0.6692,
+          "avg_score": 0.6275,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.2,
+          "retrieved_count": 5,
+          "latency": 0.1348
+        },
+        {
+          "question_id": "q009",
+          "question": "遥感分割中类别极度不平衡问题有哪些常用对策？",
+          "expected_source_files": [
+            "04_challenges.md",
+            "06_training_recipes.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "04_challenges.md",
+            "04_challenges.md",
+            "04_challenges.md",
+            "09_other_rs_tasks.md"
+          ],
+          "top_score": 0.6672,
+          "avg_score": 0.6374,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1017
+        },
+        {
+          "question_id": "q010",
+          "question": "遥感影像分割的边界模糊问题如何缓解？",
+          "expected_source_files": [
+            "04_challenges.md",
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "04_challenges.md",
+            "04_challenges.md",
+            "09_other_rs_tasks.md",
+            "04_challenges.md"
+          ],
+          "top_score": 0.7308,
+          "avg_score": 0.6723,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1122
+        },
+        {
+          "question_id": "q011",
+          "question": "Focal Loss 的原理是什么？γ 参数通常取多少？",
+          "expected_source_files": [
+            "06_training_recipes.md",
+            "04_challenges.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "06_training_recipes.md",
+            "09_other_rs_tasks.md",
+            "04_challenges.md",
+            "06_training_recipes.md"
+          ],
+          "top_score": 0.5894,
+          "avg_score": 0.5625,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1048
+        },
+        {
+          "question_id": "q012",
+          "question": "Dice Loss 与交叉熵混合损失在分割任务中为什么常用？",
+          "expected_source_files": [
+            "06_training_recipes.md",
+            "04_challenges.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "07_frameworks.md",
+            "06_training_recipes.md",
+            "09_other_rs_tasks.md",
+            "10_deployment.md"
+          ],
+          "top_score": 0.6346,
+          "avg_score": 0.5877,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1017
+        },
+        {
+          "question_id": "q013",
+          "question": "LoveDA 数据集有哪些类别？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "07_frameworks.md",
+            "05_benchmarks.md",
+            "01_datasets.md",
+            "01_datasets.md"
+          ],
+          "top_score": 0.6709,
+          "avg_score": 0.5721,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1054
+        },
+        {
+          "question_id": "q014",
+          "question": "mIoU 是什么？为什么比 Pixel Accuracy 更适合分割任务？",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "03_metrics.md",
+            "04_challenges.md",
+            "07_frameworks.md",
+            "03_metrics.md"
+          ],
+          "top_score": 0.6086,
+          "avg_score": 0.5779,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1047
+        },
+        {
+          "question_id": "q015",
+          "question": "已知 TP=80, FP=10, FN=20，帮我计算 IoU。",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "07_frameworks.md",
+            "03_metrics.md",
+            "06_training_recipes.md",
+            "04_challenges.md"
+          ],
+          "top_score": 0.577,
+          "avg_score": 0.5159,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1076
+        },
+        {
+          "question_id": "q016",
+          "question": "比较 U-Net 和 DeepLabV3+ 在遥感语义分割中的优缺点。",
+          "expected_source_files": [
+            "02_models.md",
+            "05_benchmarks.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "08_frontier_trends.md",
+            "05_benchmarks.md",
+            "02_models.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.6507,
+          "avg_score": 0.6137,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1066
+        },
+        {
+          "question_id": "q017",
+          "question": "对比 DeepLabV3+ 和 SegFormer 在 LoveDA 数据集上的架构差异和可能的表现差异。",
+          "expected_source_files": [
+            "02_models.md",
+            "05_benchmarks.md",
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "02_models.md",
+            "08_frontier_trends.md",
+            "02_models.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.6199,
+          "avg_score": 0.5816,
+          "source_hit": 1,
+          "source_recall_at_k": 0.6667,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.116
+        },
+        {
+          "question_id": "q018",
+          "question": "语义分割数据集有什么特点和共性？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "07_frameworks.md",
+            "02_models.md",
+            "05_benchmarks.md",
+            "01_datasets.md",
+            "06_training_recipes.md"
+          ],
+          "top_score": 0.6595,
+          "avg_score": 0.6271,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.25,
+          "retrieved_count": 5,
+          "latency": 0.1074
+        }
+      ],
+      "summary": {
+        "source_hit_rate": 1.0,
+        "source_recall_at_k": 0.8704,
+        "mrr": 0.8583,
+        "avg_top_score": 0.6552,
+        "avg_score": 0.5985,
+        "avg_retrieved_count": 5.0,
+        "avg_latency": 0.113,
+        "latency_norm": 0.0319,
+        "retrieval_score": 0.8603
+      }
+    },
+    "c1200_o180": {
+      "config": {
+        "name": "c1200_o180",
+        "chunk_size": 1200,
+        "chunk_overlap": 180
+      },
+      "details": [
+        {
+          "question_id": "q001",
+          "question": "LoveDA 数据集包含哪些地物类别？它的空间分辨率是多少？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "01_datasets.md",
+            "01_datasets.md",
+            "06_training_recipes.md"
+          ],
+          "top_score": 0.7232,
+          "avg_score": 0.6255,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1302
+        },
+        {
+          "question_id": "q002",
+          "question": "iSAID 数据集的实例标注规模有多大？它使用哪些评价指标？",
+          "expected_source_files": [
+            "01_datasets.md",
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "01_datasets.md",
+            "01_datasets.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.6287,
+          "avg_score": 0.5715,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 1.4841
+        },
+        {
+          "question_id": "q003",
+          "question": "DeepGlobe Land Cover 数据集的影像来自哪颗卫星？共有多少类别？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "01_datasets.md",
+            "09_other_rs_tasks.md"
+          ],
+          "top_score": 0.5506,
+          "avg_score": 0.5217,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1088
+        },
+        {
+          "question_id": "q004",
+          "question": "请对比 U-Net 和 DeepLabV3+ 的结构特点与适用场景。",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "02_models.md",
+            "02_models.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.5992,
+          "avg_score": 0.5517,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.3333,
+          "retrieved_count": 5,
+          "latency": 0.1044
+        },
+        {
+          "question_id": "q005",
+          "question": "SegFormer 在遥感分割中的核心优势和适用场景是什么？",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "02_models.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.6136,
+          "avg_score": 0.6056,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.106
+        },
+        {
+          "question_id": "q006",
+          "question": "DeepLab 系列模型从 v1 到 v3+ 的核心创新分别有哪些？",
+          "expected_source_files": [
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "06_training_recipes.md",
+            "02_models.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.5988,
+          "avg_score": 0.5471,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.25,
+          "retrieved_count": 5,
+          "latency": 0.1005
+        },
+        {
+          "question_id": "q007",
+          "question": "请解释 mIoU 的计算方式，并说明为什么它是遥感语义分割的首选指标。",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "03_metrics.md",
+            "05_benchmarks.md",
+            "03_metrics.md",
+            "04_challenges.md"
+          ],
+          "top_score": 0.7317,
+          "avg_score": 0.6737,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1053
+        },
+        {
+          "question_id": "q008",
+          "question": "Pixel Accuracy 在遥感分割评测中存在什么局限？",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "04_challenges.md",
+            "09_other_rs_tasks.md",
+            "03_metrics.md",
+            "04_challenges.md"
+          ],
+          "top_score": 0.6634,
+          "avg_score": 0.6254,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.25,
+          "retrieved_count": 5,
+          "latency": 0.1074
+        },
+        {
+          "question_id": "q009",
+          "question": "遥感分割中类别极度不平衡问题有哪些常用对策？",
+          "expected_source_files": [
+            "04_challenges.md",
+            "06_training_recipes.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "04_challenges.md",
+            "06_training_recipes.md",
+            "04_challenges.md",
+            "04_challenges.md"
+          ],
+          "top_score": 0.6837,
+          "avg_score": 0.6493,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1127
+        },
+        {
+          "question_id": "q010",
+          "question": "遥感影像分割的边界模糊问题如何缓解？",
+          "expected_source_files": [
+            "04_challenges.md",
+            "02_models.md"
+          ],
+          "retrieved_sources": [
+            "04_challenges.md",
+            "04_challenges.md",
+            "04_challenges.md",
+            "09_other_rs_tasks.md",
+            "04_challenges.md"
+          ],
+          "top_score": 0.7285,
+          "avg_score": 0.6737,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1103
+        },
+        {
+          "question_id": "q011",
+          "question": "Focal Loss 的原理是什么？γ 参数通常取多少？",
+          "expected_source_files": [
+            "06_training_recipes.md",
+            "04_challenges.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "06_training_recipes.md",
+            "06_training_recipes.md",
+            "09_other_rs_tasks.md",
+            "03_metrics.md"
+          ],
+          "top_score": 0.5675,
+          "avg_score": 0.5579,
+          "source_hit": 1,
+          "source_recall_at_k": 0.5,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1106
+        },
+        {
+          "question_id": "q012",
+          "question": "Dice Loss 与交叉熵混合损失在分割任务中为什么常用？",
+          "expected_source_files": [
+            "06_training_recipes.md",
+            "04_challenges.md"
+          ],
+          "retrieved_sources": [
+            "06_training_recipes.md",
+            "06_training_recipes.md",
+            "09_other_rs_tasks.md",
+            "04_challenges.md",
+            "07_frameworks.md"
+          ],
+          "top_score": 0.6043,
+          "avg_score": 0.5822,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1063
+        },
+        {
+          "question_id": "q013",
+          "question": "LoveDA 数据集有哪些类别？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "01_datasets.md",
+            "06_training_recipes.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "07_frameworks.md"
+          ],
+          "top_score": 0.6709,
+          "avg_score": 0.5836,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.127
+        },
+        {
+          "question_id": "q014",
+          "question": "mIoU 是什么？为什么比 Pixel Accuracy 更适合分割任务？",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "03_metrics.md",
+            "07_frameworks.md",
+            "03_metrics.md",
+            "05_benchmarks.md",
+            "04_challenges.md"
+          ],
+          "top_score": 0.5891,
+          "avg_score": 0.5788,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1032
+        },
+        {
+          "question_id": "q015",
+          "question": "已知 TP=80, FP=10, FN=20，帮我计算 IoU。",
+          "expected_source_files": [
+            "03_metrics.md"
+          ],
+          "retrieved_sources": [
+            "07_frameworks.md",
+            "03_metrics.md",
+            "05_benchmarks.md",
+            "03_metrics.md",
+            "06_training_recipes.md"
+          ],
+          "top_score": 0.5456,
+          "avg_score": 0.5162,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_count": 5,
+          "latency": 0.1097
+        },
+        {
+          "question_id": "q016",
+          "question": "比较 U-Net 和 DeepLabV3+ 在遥感语义分割中的优缺点。",
+          "expected_source_files": [
+            "02_models.md",
+            "05_benchmarks.md"
+          ],
+          "retrieved_sources": [
+            "02_models.md",
+            "02_models.md",
+            "05_benchmarks.md",
+            "05_benchmarks.md",
+            "08_frontier_trends.md"
+          ],
+          "top_score": 0.6205,
+          "avg_score": 0.6083,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1103
+        },
+        {
+          "question_id": "q017",
+          "question": "对比 DeepLabV3+ 和 SegFormer 在 LoveDA 数据集上的架构差异和可能的表现差异。",
+          "expected_source_files": [
+            "02_models.md",
+            "05_benchmarks.md",
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "05_benchmarks.md",
+            "06_training_recipes.md",
+            "05_benchmarks.md",
+            "02_models.md",
+            "05_benchmarks.md"
+          ],
+          "top_score": 0.617,
+          "avg_score": 0.5654,
+          "source_hit": 1,
+          "source_recall_at_k": 0.6667,
+          "mrr": 1.0,
+          "retrieved_count": 5,
+          "latency": 0.1073
+        },
+        {
+          "question_id": "q018",
+          "question": "语义分割数据集有什么特点和共性？",
+          "expected_source_files": [
+            "01_datasets.md"
+          ],
+          "retrieved_sources": [
+            "07_frameworks.md",
+            "02_models.md",
+            "01_datasets.md",
+            "05_benchmarks.md",
+            "06_training_recipes.md"
+          ],
+          "top_score": 0.6595,
+          "avg_score": 0.6193,
+          "source_hit": 1,
+          "source_recall_at_k": 1.0,
+          "mrr": 0.3333,
+          "retrieved_count": 5,
+          "latency": 0.101
+        }
+      ],
+      "summary": {
+        "source_hit_rate": 1.0,
+        "source_recall_at_k": 0.8981,
+        "mrr": 0.8148,
+        "avg_top_score": 0.6331,
+        "avg_score": 0.592,
+        "avg_retrieved_count": 5.0,
+        "avg_latency": 0.1858,
+        "latency_norm": 1.0,
+        "retrieval_score": 0.8101
+      }
+    }
+  },
+  "best_config": {
+    "name": "c400_o80",
+    "chunk_size": 400,
+    "chunk_overlap": 80
+  }
+}

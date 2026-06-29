@@ -1,0 +1,188 @@
+[
+  {
+    "name": "PA",
+    "full_name": "Pixel Accuracy（像素精度）",
+    "formula": "PA = TP / (TP + FP) = 正确分类像素数 / 总像素数",
+    "meaning": "所有被正确分类的像素占总像素的比例，是最基础的分割评价指标。",
+    "advantages": [
+      "计算简单直观",
+      "对整体分割质量有宏观评估",
+      "适合作为初步基线指标"
+    ],
+    "limitations": [
+      "对类别不平衡敏感（大类会主导指标）",
+      "无法反映小类别的分割质量",
+      "不区分类别间错误类型"
+    ],
+    "use_cases": [
+      "二分类任务的整体评估",
+      "类别分布均匀时的快速评估",
+      "与其他指标配合使用的基线参考"
+    ],
+    "range": "0 ~ 1，越大越好",
+    "notes": "在遥感影像中，背景类通常占绝大部分像素，PA 可能偏高而掩盖小类别（如车辆）的差表现。"
+  },
+  {
+    "name": "MPA",
+    "full_name": "Mean Pixel Accuracy（平均像素精度）",
+    "formula": "MPA = (1/C) * Σ(TP_i / (TP_i + FP_i))，C 为类别数",
+    "meaning": "各类别像素精度的算术平均值，消除大类对指标的支配效应。",
+    "advantages": [
+      "对每个类别平等对待",
+      "缓解类别不平衡的影响",
+      "比 PA 更公平地反映各类别表现"
+    ],
+    "limitations": [
+      "仍未考虑假阴性（FN）",
+      "对类别数量敏感",
+      "不区分错误类型（漏分 vs 误分）"
+    ],
+    "use_cases": [
+      "类别不平衡场景",
+      "各类别同等重要的任务",
+      "多分类分割的初步评估"
+    ],
+    "range": "0 ~ 1，越大越好",
+    "notes": "MPA 比 PA 更适合遥感影像评估，因为遥感场景中各类别面积差异通常很大。"
+  },
+  {
+    "name": "IoU",
+    "full_name": "Intersection over Union（交并比 / Jaccard Index）",
+    "formula": "IoU_i = TP_i / (TP_i + FP_i + FN_i)",
+    "meaning": "预测与真实标注的交集除以并集，衡量单个类别的分割重叠程度。",
+    "advantages": [
+      "同时考虑假阳性（FP）和假阴性（FN）",
+      "对过分割和欠分割都敏感",
+      "是分割领域最常用的单类别指标"
+    ],
+    "limitations": [
+      "对小目标敏感（少量像素错误导致 IoU 大幅下降）",
+      "类别极不平衡时 IoU 可能极低",
+      "不区分错误的空间分布"
+    ],
+    "use_cases": [
+      "逐类别的精细评估",
+      "边界质量评估",
+      "与论文结果对比的标准指标"
+    ],
+    "range": "0 ~ 1，越大越好",
+    "notes": "IoU 是遥感语义分割论文中最常报告的指标。对于小目标（如遥感中的车辆），IoU 天然偏低，需结合其他指标综合判断。"
+  },
+  {
+    "name": "mIoU",
+    "full_name": "Mean Intersection over Union（平均交并比）",
+    "formula": "mIoU = (1/C) * Σ IoU_i = (1/C) * Σ(TP_i / (TP_i + FP_i + FN_i))",
+    "meaning": "所有类别 IoU 的算术平均值，是语义分割最核心的综合评价指标。",
+    "advantages": [
+      "对每个类别平等对待",
+      "综合反映 FP 和 FN 的影响",
+      "是学术界和竞赛的标准评价指标",
+      "便于跨论文和跨模型比较"
+    ],
+    "limitations": [
+      "小类别 IoU 波动会拉低整体 mIoU",
+      "不考虑类别频率，可能高估小类贡献",
+      "无法反映错误的空间分布模式"
+    ],
+    "use_cases": [
+      "模型综合性能评估的标准指标",
+      "论文和竞赛的必报告指标",
+      "不同模型间的横向对比"
+    ],
+    "range": "0 ~ 1，越大越好",
+    "notes": "mIoU 是遥感语义分割最重要的评价指标。在 ISPRS、LoveDA 等竞赛中均以 mIoU 作为排名依据。报告时应同时给出各类别 IoU 以全面评估。"
+  },
+  {
+    "name": "FWIoU",
+    "full_name": "Frequency Weighted IoU（频率加权交并比）",
+    "formula": "FWIoU = Σ( (n_i/N) * IoU_i )，n_i 为类别 i 的像素数，N 为总像素数",
+    "meaning": "按类别频率加权的 IoU，大类别贡献更大，反映实际使用中的平均性能。",
+    "advantages": [
+      "考虑类别频率，更贴近实际应用",
+      "对大类别的评估更准确",
+      "计算方式与 PA 类似但更严格"
+    ],
+    "limitations": [
+      "大类别会主导指标",
+      "小类别表现被掩盖",
+      "不适合类别极不平衡的场景"
+    ],
+    "use_cases": [
+      "关注整体应用效果而非各类均等",
+      "背景类占主导的分割任务",
+      "与 mIoU 配合使用"
+    ],
+    "range": "0 ~ 1，越大越好",
+    "notes": "FWIoU 在遥感影像中通常高于 mIoU，因为背景/大类贡献被加权放大。建议同时报告 mIoU 和 FWIoU 以全面评估。"
+  },
+  {
+    "name": "Precision",
+    "full_name": "Precision（精确率 / 查准率）",
+    "formula": "Precision_i = TP_i / (TP_i + FP_i)",
+    "meaning": "被预测为某类的像素中，真正属于该类的比例，衡量模型的'误检'程度。",
+    "advantages": [
+      "直观反映误检率（False Alarm）",
+      "对过度分割敏感",
+      "适合关注'少误报'的场景"
+    ],
+    "limitations": [
+      "不考虑漏检（FN）",
+      "单独使用可能误导（高 Precision 但低 Recall）",
+      "对类别不平衡敏感"
+    ],
+    "use_cases": [
+      "关注误检成本的场景（如建筑自动提取）",
+      "与 Recall 配合使用",
+      "绘制 PR 曲线"
+    ],
+    "range": "0 ~ 1，越大越好",
+    "notes": "在遥感建筑提取中，Precision 高意味着模型不易将非建筑区域误判为建筑，适合城市规划等需要高可靠性的应用。"
+  },
+  {
+    "name": "Recall",
+    "full_name": "Recall（召回率 / 查全率 / Sensitivity）",
+    "formula": "Recall_i = TP_i / (TP_i + FN_i)",
+    "meaning": "真实标注为某类的像素中，被正确预测的比例，衡量模型的'漏检'程度。",
+    "advantages": [
+      "直观反映漏检率（Miss Rate = 1 - Recall）",
+      "对欠分割敏感",
+      "适合关注'少漏检'的场景"
+    ],
+    "limitations": [
+      "不考虑误检（FP）",
+      "单独使用可能误导（高 Recall 但低 Precision）",
+      "过度预测可提高 Recall 但损害 Precision"
+    ],
+    "use_cases": [
+      "关注漏检成本的场景（如灾害检测）",
+      "与 Precision 配合使用",
+      "小目标检测评估"
+    ],
+    "range": "0 ~ 1，越大越好",
+    "notes": "在遥感灾害检测中，Recall 高意味着不会遗漏受灾区域，宁可误报也不可漏报，此时 Recall 比 Precision 更重要。"
+  },
+  {
+    "name": "F1-score",
+    "full_name": "F1-score（F-measure / Dice Coefficient）",
+    "formula": "F1_i = 2 * (Precision_i * Recall_i) / (Precision_i + Recall_i) = 2*TP_i / (2*TP_i + FP_i + FN_i)",
+    "meaning": "Precision 和 Recall 的调和平均，综合衡量精确率和召回率的平衡。",
+    "advantages": [
+      "平衡 Precision 和 Recall",
+      "对极值敏感（任一指标极低时 F1 也低）",
+      "是二分类和多分类的通用指标",
+      "F1 与 Dice 系数数学等价"
+    ],
+    "limitations": [
+      "调和平均对小值敏感",
+      "不区分 Precision 和 Recall 的相对重要性",
+      "F-beta（beta != 1）可能更适合某些场景"
+    ],
+    "use_cases": [
+      "需要平衡精确率和召回率的场景",
+      "二分类分割任务",
+      "与 mIoU 配合作为综合评估指标"
+    ],
+    "range": "0 ~ 1，越大越好",
+    "notes": "F1-score 在数学上与 Dice 系数等价。遥感分割中常用 per-class F1 的宏平均作为辅助评估指标，尤其适合类别不平衡场景。"
+  }
+]

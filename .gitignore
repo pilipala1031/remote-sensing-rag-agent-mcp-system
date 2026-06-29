@@ -1,0 +1,72 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ===== Virtual env =====
+.venv/
+venv/
+env/
+ENV/
+
+# ===== 环境变量（含真实密钥，绝对不能提交）=====
+.env
+.env.local
+.env.*.local
+# 保留示例配置文件
+!.env.example
+
+# ===== 数据与持久化（保留目录占位符）=====
+data/raw/*
+data/chroma/*
+data/work_units/*
+!data/raw/.gitkeep
+!data/chroma/.gitkeep
+!data/work_units/.gitkeep
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== Chroma / 向量库 =====
+*.chroma/
+
+# ===== 日志 =====
+*.log
+logs/
+
+# ===== Streamlit =====
+.streamlit/secrets.toml
+
+# ===== OS / IDE =====
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# ===== Claude Code 本地配置 / 会话（不应传）=====
+.claude/
+
+# ===== 临时文件 =====
+tmp/
+temp/
+*.tmp
+nul
+
+# ===== 大模型 / 缓存文件 =====
+.cache/
+*.bin
+*.pt
+*.pth
+*.onnx
+
+# ===== 构建 =====
+dist/
+build/

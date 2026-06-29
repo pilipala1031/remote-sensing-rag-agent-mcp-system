@@ -1,0 +1,212 @@
+[
+  {
+    "id": "q001",
+    "category": "dataset",
+    "question": "LoveDA 数据集包含哪些地物类别？它的空间分辨率是多少？",
+    "expected_keywords": ["建筑", "道路", "水体", "0.3"],
+    "expected_source_files": ["01_datasets.md"],
+    "expected_tools": ["dataset_spec_lookup", "knowledge_base_search"],
+    "unexpected_tools": ["plan_and_search", "metrics_calculator"],
+    "should_refuse": false
+  },
+  {
+    "id": "q002",
+    "category": "dataset",
+    "question": "iSAID 数据集的实例标注规模有多大？它使用哪些评价指标？",
+    "expected_keywords": ["实例", "mAP", "mIoU"],
+    "expected_source_files": ["01_datasets.md"],
+    "expected_tools": ["dataset_spec_lookup", "knowledge_base_search"],
+    "unexpected_tools": ["plan_and_search", "metrics_calculator"],
+    "should_refuse": false
+  },
+  {
+    "id": "q003",
+    "category": "dataset",
+    "question": "DeepGlobe Land Cover 数据集的影像来自哪颗卫星？共有多少类别？",
+    "expected_keywords": ["WorldView-3", "7"],
+    "expected_source_files": ["01_datasets.md"],
+    "expected_tools": ["dataset_spec_lookup", "knowledge_base_search"],
+    "unexpected_tools": ["plan_and_search", "metrics_calculator"],
+    "should_refuse": false
+  },
+  {
+    "id": "q004",
+    "category": "model_compare",
+    "question": "请对比 U-Net 和 DeepLabV3+ 的结构特点与适用场景。",
+    "expected_keywords": ["跳跃", "ASPP", "空洞"],
+    "expected_source_files": ["02_models.md"],
+    "expected_tools": ["model_comparison_table", "knowledge_base_search", "plan_and_search"],
+    "unexpected_tools": ["metrics_calculator", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q005",
+    "category": "model_compare",
+    "question": "SegFormer 在遥感分割中的核心优势和适用场景是什么？",
+    "expected_keywords": ["Transformer", "位置编码", "MLP"],
+    "expected_source_files": ["02_models.md"],
+    "expected_tools": ["model_comparison_table", "knowledge_base_search"],
+    "unexpected_tools": ["plan_and_search", "metrics_calculator", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q006",
+    "category": "model_compare",
+    "question": "DeepLab 系列模型从 v1 到 v3+ 的核心创新分别有哪些？",
+    "expected_keywords": ["ASPP", "空洞", "Encoder-Decoder"],
+    "expected_source_files": ["02_models.md"],
+    "expected_tools": ["model_comparison_table", "knowledge_base_search"],
+    "unexpected_tools": ["metrics_calculator", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q007",
+    "category": "metric",
+    "question": "请解释 mIoU 的计算方式，并说明为什么它是遥感语义分割的首选指标。",
+    "expected_keywords": ["mIoU", "IoU", "平均"],
+    "expected_source_files": ["03_metrics.md"],
+    "expected_tools": ["metric_formula_lookup", "knowledge_base_search"],
+    "unexpected_tools": ["metrics_calculator", "plan_and_search", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q008",
+    "category": "metric",
+    "question": "Pixel Accuracy 在遥感分割评测中存在什么局限？",
+    "expected_keywords": ["背景", "大类", "小类"],
+    "expected_source_files": ["03_metrics.md"],
+    "expected_tools": ["metric_formula_lookup", "knowledge_base_search"],
+    "unexpected_tools": ["metrics_calculator", "plan_and_search", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q009",
+    "category": "challenge",
+    "question": "遥感分割中类别极度不平衡问题有哪些常用对策？",
+    "expected_keywords": ["Focal", "Dice", "加权"],
+    "expected_source_files": ["04_challenges.md"],
+    "expected_tools": ["knowledge_base_search"],
+    "unexpected_tools": ["metrics_calculator", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q010",
+    "category": "challenge",
+    "question": "遥感影像分割的边界模糊问题如何缓解？",
+    "expected_keywords": ["Boundary", "CRF", "边界"],
+    "expected_source_files": ["04_challenges.md"],
+    "expected_tools": ["knowledge_base_search"],
+    "unexpected_tools": ["metrics_calculator", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q011",
+    "category": "loss",
+    "question": "Focal Loss 的原理是什么？γ 参数通常取多少？",
+    "expected_keywords": ["Focal", "难分", "2"],
+    "expected_source_files": ["04_challenges.md"],
+    "expected_tools": ["knowledge_base_search"],
+    "unexpected_tools": ["metrics_calculator", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q012",
+    "category": "loss",
+    "question": "Dice Loss 与交叉熵混合损失在分割任务中为什么常用？",
+    "expected_keywords": ["Dice", "IoU", "CE"],
+    "expected_source_files": ["04_challenges.md"],
+    "expected_tools": ["knowledge_base_search"],
+    "unexpected_tools": ["metrics_calculator", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q_out_001",
+    "category": "out_of_scope",
+    "question": "请介绍 Transformer 在机器翻译中的 BLEU 计算细节",
+    "expected_keywords": [],
+    "expected_source_files": [],
+    "expected_tools": [],
+    "unexpected_tools": [],
+    "should_refuse": true
+  },
+  {
+    "id": "q_out_002",
+    "category": "out_of_scope",
+    "question": "如何在 Linux 服务器上安装并配置 Nginx 反向代理？",
+    "expected_keywords": [],
+    "expected_source_files": [],
+    "expected_tools": [],
+    "unexpected_tools": [],
+    "should_refuse": true
+  },
+  {
+    "id": "q_out_003",
+    "category": "out_of_scope",
+    "question": "请详细介绍 ImageNet 数据集的图像分类评测协议和 top-1 / top-5 accuracy 的计算方式",
+    "expected_keywords": [],
+    "expected_source_files": [],
+    "expected_tools": [],
+    "unexpected_tools": [],
+    "should_refuse": true
+  },
+  {
+    "id": "q013",
+    "category": "tool_dataset",
+    "question": "LoveDA 数据集有哪些类别？",
+    "expected_keywords": ["建筑", "道路", "水体", "7"],
+    "expected_source_files": [],
+    "expected_tools": ["dataset_spec_lookup"],
+    "unexpected_tools": ["plan_and_search", "knowledge_base_search"],
+    "should_refuse": false
+  },
+  {
+    "id": "q014",
+    "category": "tool_metric_formula",
+    "question": "mIoU 是什么？为什么比 Pixel Accuracy 更适合分割任务？",
+    "expected_keywords": ["mIoU", "IoU", "平均", "Pixel Accuracy"],
+    "expected_source_files": [],
+    "expected_tools": ["metric_formula_lookup", "knowledge_base_search"],
+    "unexpected_tools": ["metrics_calculator", "plan_and_search", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q015",
+    "category": "tool_metric_calc",
+    "question": "已知 TP=80, FP=10, FN=20，帮我计算 IoU。",
+    "expected_keywords": ["0.7273", "72.73", "IoU"],
+    "expected_source_files": [],
+    "expected_tools": ["metrics_calculator"],
+    "unexpected_tools": ["plan_and_search", "knowledge_base_search", "dataset_spec_lookup", "metric_formula_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q016",
+    "category": "tool_model_compare",
+    "question": "比较 U-Net 和 DeepLabV3+ 在遥感语义分割中的优缺点。",
+    "expected_keywords": ["ASPP", "跳跃", "编码"],
+    "expected_source_files": [],
+    "expected_tools": ["model_comparison_table"],
+    "unexpected_tools": ["metrics_calculator", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q017",
+    "category": "tool_complex",
+    "question": "对比 DeepLabV3+ 和 SegFormer 在 LoveDA 数据集上的架构差异和可能的表现差异。",
+    "expected_keywords": ["ASPP", "Transformer", "SegFormer"],
+    "expected_source_files": [],
+    "expected_tools": ["plan_and_search", "model_comparison_table"],
+    "unexpected_tools": ["metrics_calculator", "dataset_spec_lookup"],
+    "should_refuse": false
+  },
+  {
+    "id": "q018",
+    "category": "tool_dataset_overview",
+    "question": "语义分割数据集有什么特点和共性？",
+    "expected_keywords": ["类别", "分辨率", "标注"],
+    "expected_source_files": [],
+    "expected_tools": ["dataset_overview", "knowledge_base_search"],
+    "unexpected_tools": ["plan_and_search", "dataset_spec_lookup", "metrics_calculator"],
+    "should_refuse": false
+  }
+]

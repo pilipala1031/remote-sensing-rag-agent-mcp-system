@@ -1,0 +1,36 @@
+{
+  "fixed_params": {
+    "chunk_size": 800,
+    "chunk_overlap": 120,
+    "similarity_threshold": 0.3,
+    "top_k": 5
+  },
+  "default_params": {
+    "chunk_size": 800,
+    "chunk_overlap": 120,
+    "similarity_threshold": 0.3
+  },
+  "configs": [
+    {
+      "name": "baseline",
+      "description": "原始向量检索 top_k=5，不使用 rerank",
+      "use_rerank": false,
+      "candidate_k": 5,
+      "final_top_k": 5
+    },
+    {
+      "name": "rerank_k10",
+      "description": "向量检索 candidate_k=10，rerank 后保留 top_k=5",
+      "use_rerank": true,
+      "candidate_k": 10,
+      "final_top_k": 5
+    },
+    {
+      "name": "rerank_k20",
+      "description": "向量检索 candidate_k=20，rerank 后保留 top_k=5",
+      "use_rerank": true,
+      "candidate_k": 20,
+      "final_top_k": 5
+    }
+  ]
+}

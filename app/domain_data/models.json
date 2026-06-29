@@ -1,0 +1,162 @@
+[
+  {
+    "name": "U-Net",
+    "architecture_type": "Encoder-Decoder (对称编解码器)",
+    "key_modules": [
+      "对称编码器（下采样路径）",
+      "对称解码器（上采样路径）",
+      "跳跃连接（Skip Connection / Copy & Concat）",
+      "1x1 卷积分类头"
+    ],
+    "strengths": [
+      "结构简洁，易于实现和修改",
+      "跳跃连接有效保留空间细节",
+      "在小数据集上表现良好",
+      "推理速度快，适合实时应用"
+    ],
+    "limitations": [
+      "缺乏多尺度特征建模能力",
+      "标准版本对大尺度地物建模不足",
+      "编码器特征提取能力受限于简单 VGG 风格骨干"
+    ],
+    "suitable_scenarios": [
+      "数据量有限的遥感场景",
+      "需要快速训练和推理的应用",
+      "建筑物/道路等规则地物提取"
+    ],
+    "remote_sensing_notes": "U-Net 是遥感语义分割最常用的基线模型。遥感影像中 U-Net 的跳跃连接对小目标（如车辆）分割尤为有效。可结合 ResNet/EfficientNet 作为编码器以提升特征提取能力。"
+  },
+  {
+    "name": "DeepLabV3+",
+    "architecture_type": "Dilated Convolution + Encoder-Decoder",
+    "key_modules": [
+      "ASPP（Atrous Spatial Pyramid Pooling）模块",
+      "编码器（通常为 ResNet/Xception）",
+      "解码器（低层特征融合）",
+      "空洞卷积（Dilated Convolution）"
+    ],
+    "strengths": [
+      "ASPP 模块擅长多尺度特征提取",
+      "空洞卷积在不增加参数的情况下扩大感受野",
+      "编码器-解码器结构恢复边界细节",
+      "在多个基准数据集上达到 SOTA"
+    ],
+    "limitations": [
+      "ASPP 模块计算开销较大",
+      "对大目标的边界仍有改善空间",
+      "模型复杂度高于 U-Net"
+    ],
+    "suitable_scenarios": [
+      "多尺度地物共存的复杂遥感场景",
+      "需要精细边界的高分辨率影像",
+      "类别间尺度差异大的任务"
+    ],
+    "remote_sensing_notes": "DeepLabV3+ 是遥感语义分割的主流模型。ASPP 的多尺度能力非常适合遥感影像中不同尺度地物（如大型水体 vs 小型车辆）的共存场景。建议使用 output_stride=16 平衡精度与速度。"
+  },
+  {
+    "name": "SegFormer",
+    "architecture_type": "Transformer (无 Token Embedding)",
+    "key_modules": [
+      "层级 Transformer 编码器（Hierarchical Transformer）",
+      "重叠 Patch Embedding（Overlap Patch Merging）",
+      "自注意力机制（Self-Attention）",
+      "轻量 MLP 解码器"
+    ],
+    "strengths": [
+      "无需位置编码即可处理任意分辨率",
+      "层级特征提供多尺度信息",
+      "轻量 MLP 解码器计算高效",
+      "全局上下文建模能力强"
+    ],
+    "limitations": [
+      "Transformer 训练需要更多数据",
+      "自注意力的显存消耗随分辨率二次增长",
+      "小目标分割精度有时不如 CNN 方法"
+    ],
+    "suitable_scenarios": [
+      "大规模遥感数据集",
+      "需要全局上下文理解的任务",
+      "高分辨率大尺寸遥感影像"
+    ],
+    "remote_sensing_notes": "SegFormer 的全局注意力机制适合遥感影像中需要大范围上下文的任务（如土地覆盖分类）。层级结构天然提供多尺度特征，无需额外 ASPP。建议配合窗口注意力降低显存消耗。"
+  },
+  {
+    "name": "PSPNet",
+    "architecture_type": " Pyramid Pooling + Single Decoder",
+    "key_modules": [
+      "金字塔池化模块（Pyramid Pooling Module, PPM）",
+      "ResNet 编码器",
+      "全局平均池化的多尺度变体",
+      "特征拼接 + 卷积融合"
+    ],
+    "strengths": [
+      "PPM 有效捕获全局上下文信息",
+      "对不同尺度的地物有较好适应性",
+      "结构直观，易于理解"
+    ],
+    "limitations": [
+      "PPM 的池化操作会丢失细节信息",
+      "边界精度不如 Encoder-Decoder 结构",
+      "对细小目标分割效果一般"
+    ],
+    "suitable_scenarios": [
+      "场景分类导向的地表覆盖分割",
+      "大尺度地物识别",
+      "全局语义理解任务"
+    ],
+    "remote_sensing_notes": "PSPNet 的金字塔池化模块适合遥感影像中场景级别的理解（如区分城市/农业/森林区域）。但对小目标（如车辆）的分割精度不如 U-Net 和 DeepLabV3+。常作为遥感分类的对比基线。"
+  },
+  {
+    "name": "FCN",
+    "architecture_type": "Fully Convolutional Network",
+    "key_modules": [
+      "全卷积编码器（VGG/ResNet）",
+      "转置卷积上采样（反卷积）",
+      "跳跃连接融合（FCN-8s）",
+      "1x1 卷积分类"
+    ],
+    "strengths": [
+      "开创性架构，端到端密集预测",
+      "结构简单，便于理解和教学",
+      "可接受任意尺寸输入"
+    ],
+    "limitations": [
+      "感受野有限，全局建模能力不足",
+      "上采样粗糙，边界细节差",
+      "在复杂场景上精度已落后于 newer models"
+    ],
+    "suitable_scenarios": [
+      "教学与概念验证",
+      "简单二分类遥感任务（如水体/非水体）",
+      "快速原型验证"
+    ],
+    "remote_sensing_notes": "FCN 是语义分割的开创性工作，但在遥感领域已被 U-Net/DeepLabV3+ 等大幅超越。主要用于教学对比和简单任务的快速验证。不推荐用于生产级遥感应用。"
+  },
+  {
+    "name": "Swin-Transformer",
+    "architecture_type": "Hierarchical Swin Transformer + Decoder",
+    "key_modules": [
+      "Swin Transformer 编码器（移位窗口注意力）",
+      "层级 Patch Merging",
+      "相对位置偏置（Relative Position Bias）",
+      "U-PerMo 风格解码器或 UPC 模块"
+    ],
+    "strengths": [
+      "窗口注意力机制显著降低计算复杂度（线性）",
+      "移位窗口实现跨窗口信息交互",
+      "层级结构天然适配多尺度特征",
+      "在 ImageNet/ADE20K 等基准上达到 SOTA"
+    ],
+    "limitations": [
+      "模型复杂度高，训练成本大",
+      "窗口注意力在小窗口时全局建模能力受限",
+      "需要大规模预训练数据"
+    ],
+    "suitable_scenarios": [
+      "高分辨率遥感影像的精细分割",
+      "有充足标注数据的场景",
+      "需要 SOTA 精度的应用"
+    ],
+    "remote_sensing_notes": "Swin-Transformer 的移位窗口注意力在高分辨率遥感影像中展现了极佳的精度与效率平衡。线性复杂度使其可以处理大尺寸遥感影像。建议配合 ImageNet 预训练权重使用，在遥感数据集上微调。"
+  }
+]

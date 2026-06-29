@@ -1,0 +1,15 @@
+{
+  "recommended_chunk_size": 400,
+  "recommended_chunk_overlap": 80,
+  "recommended_similarity_threshold": 0.6,
+  "recommended_chunk_config_name": "c400_o80",
+  "retrieval_score": 0.863,
+  "refusal_score": 0.5778,
+  "recommended_answer_score": 0.7801,
+  "default_answer_score": 0.8702,
+  "default_params": {
+    "chunk_size": 800,
+    "chunk_overlap": 120,
+    "similarity_threshold": 0.3
+  }
+}

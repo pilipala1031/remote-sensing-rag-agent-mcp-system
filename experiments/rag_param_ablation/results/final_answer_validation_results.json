@@ -1,0 +1,709 @@
+{
+  "stage": "answer_validation",
+  "recommended": {
+    "label": "recommended",
+    "details": [
+      {
+        "question_id": "q001",
+        "question": "LoveDA 数据集包含哪些地物类别？它的空间分辨率是多少？",
+        "answer": "根据上下文，LoveDA 数据集的相关信息如下：\n\n* **地物类别**：共包含 7 类，分别为：建筑、道路、水体、裸地、林地、农业、背景。\n* **空间分辨率**：0.3 m。\n\n[来源：01_datasets.md，第1页，chunk_id=d76bc3e66a07]",
+        "sources": [
+          "01_datasets.md",
+          "07_frameworks.md",
+          "01_datasets.md",
+          "01_datasets.md",
+          "01_datasets.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 8.968
+      },
+      {
+        "question_id": "q002",
+        "question": "iSAID 数据集的实例标注规模有多大？它使用哪些评价指标？",
+        "answer": "根据提供的上下文，关于 iSAID 数据集的信息如下：\n\n1. **实例标注规模**：上下文中没有提供具体的实例标注数量。仅说明它是目前“最大的”航空影像实例分割数据集，且具备“标注密度高”、“目标尺度变化极大”的特点。关于具体的定量规模，根据当前知识库内容，无法确定该问题的答案。\n2. **评价指标**：\n   - **mAP**：用于实例分割评测。\n   - **mIoU**：用于语义分割评测。\n\n参考来源：\n[来源：01_datasets.md，第1页，chunk_id=49a213092714]",
+        "sources": [
+          "01_datasets.md"
+        ],
+        "keyword_coverage": 0.6667,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 15.8318
+      },
+      {
+        "question_id": "q003",
+        "question": "DeepGlobe Land Cover 数据集的影像来自哪颗卫星？共有多少类别？",
+        "answer": "DeepGlobe Land Cover 数据集的相关信息如下：\n\n1. **影像来源卫星**：WorldView-3 卫星。\n2. **类别数量**：共有 7 类（具体包括：林地、农业、牧场、植被、水体、裸地、未知）。\n\n[来源：01_datasets.md，第1页，c66311dbc685]",
+        "sources": [
+          "01_datasets.md",
+          "01_datasets.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 5.0633
+      },
+      {
+        "question_id": "q004",
+        "question": "请对比 U-Net 和 DeepLabV3+ 的结构特点与适用场景。",
+        "answer": "基于给定的上下文，U-Net 和 DeepLabV3+ 的结构特点与适用场景对比如下：\n\n### 一、 结构特点对比\n\n*   **U-Net**：\n    *   **架构**：采用编码器-解码器对称结构。\n    *   **核心机制**：下采样阶段提取特征，上采样阶段逐步恢复分辨率。通过跳跃连接拼接低层细节与高层语义。\n    *   **特性**：结构简洁、参数量小，能够很好地保留边界细节。\n*   **DeepLabV3+**：\n    *   **架构**：同样采用 Encoder-Decoder 结构，但将 ASPP（空洞空间金字塔池化）的输出与低层特征进行融合。\n    *   **核心机制**：利用空洞卷积（Atrous / Dilated Convolution）在扩大感受野的同时不降低分辨率；引入 ASPP 进行多尺度特征聚合（v3 还加入了全局平均池化分支）。\n    *   **特性**：多尺度建模能力强，对大小目标都友好。\n\n### 二、 适用场景对比\n\n*   **U-Net**：\n    *   适用于**小数据集的快速起步或快速原型验证**（参数少、收",
+        "sources": [
+          "02_models.md",
+          "05_benchmarks.md",
+          "02_models.md",
+          "06_training_recipes.md",
+          "02_models.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 15.4848
+      },
+      {
+        "question_id": "q005",
+        "question": "SegFormer 在遥感分割中的核心优势和适用场景是什么？",
+        "answer": "根据知识库内容，SegFormer 在遥感分割中的核心优势和适用场景如下：\n\n**核心优势：**\n1. **适配任意分辨率**：由于未使用位置编码，模型可以灵活适配任意输入分辨率。\n2. **多尺度融合效果好**：在处理多尺度特征融合时表现优异。\n3. **参数效率高**：结合了轻量级的 MLP 解码器，模型整体参数效率较高。\n\n**适用场景：**\n1. 适用于**高分辨率影像**和**多尺度地物**的分割任务。\n2. 常用于遥感分割的**轻量化部署**（通常会选用 SegFormer-B0 或 SegFormer-B2 版本）。\n\n[来源：02_models.md，第1页，chunk_id=662dcd17e71b]",
+        "sources": [
+          "02_models.md",
+          "08_frontier_trends.md"
+        ],
+        "keyword_coverage": 0.6,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 8.8031
+      },
+      {
+        "question_id": "q006",
+        "question": "DeepLab 系列模型从 v1 到 v3+ 的核心创新分别有哪些？",
+        "answer": "DeepLab 系列模型从 v1 到 v3+ 的核心创新如下：\n\n*   **v1/v2**：引入空洞卷积（Atrous / Dilated Convolution），在扩大感受野的同时不降低分辨率。\n*   **v2**：采用 ASPP（Atrous Spatial Pyramid Pooling）进行多尺度特征聚合。\n*   **v3**：改进了 ASPP 模块，并加入了全局平均池化分支。\n*   **v3+**：采用 Encoder-Decoder 结构，将 ASPP 的输出与低层特征进行融合。\n\n[来源：02_models.md，第1页，8cc5de02f29a]",
+        "sources": [
+          "02_models.md",
+          "05_benchmarks.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 11.7771
+      },
+      {
+        "question_id": "q007",
+        "question": "请解释 mIoU 的计算方式，并说明为什么它是遥感语义分割的首选指标。",
+        "answer": "基于给定的上下文，mIoU 的计算方式及其作为首选指标的原因如下：\n\n**1. mIoU 的计算方式**\n*   **定义**：mIoU 是所有类别 IoU（交并比 / Jaccard Index）的算术平均值。\n*   **公式**：mIoU = (1/C) Σ_i IoU_i （其中 C 为类别总数）。\n*   **底层基础（IoU）**：单个类别 i 的 IoU 计算公式为 `IoU_i = M[i][i] / ( Σ_j M[i][j] + Σ_j M[j][i] - M[i][i] )`，即真实类别与预测类别的交集与并集之比，取值范围为 [0, 1]，越大越好。\n\n**2. 为什么它是遥感语义分割的首选指标**\n*   **行业惯例**：根据遥感领域的惯例，mIoU 是遥感语义分割论文与竞赛的“第一指标”，主流的 LoveDA、DeepGlobe、ISPRS benchmark 均以 mIoU 进行排名。\n*   **核心优势**：作为 mIoU 的计算基础，IoU 指标能够同时惩罚漏检与误检，是分割任务最核心的指标。\n\n**补充注意事项**：\n虽然 mIoU 是首选指标，但",
+        "sources": [
+          "03_metrics.md",
+          "03_metrics.md",
+          "03_metrics.md",
+          "05_benchmarks.md",
+          "03_metrics.md"
+        ],
+        "keyword_coverage": 0.8,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 27.3813
+      },
+      {
+        "question_id": "q008",
+        "question": "Pixel Accuracy 在遥感分割评测中存在什么局限？",
+        "answer": "根据当前知识库内容，无法确定该问题的答案。",
+        "sources": [
+          "04_challenges.md",
+          "08_frontier_trends.md",
+          "03_metrics.md",
+          "08_frontier_trends.md"
+        ],
+        "keyword_coverage": 0.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 0,
+        "latency": 12.9921
+      },
+      {
+        "question_id": "q009",
+        "question": "遥感分割中类别极度不平衡问题有哪些常用对策？",
+        "answer": "根据当前知识库内容，遥感分割中应对类别极度不平衡（及小类IoU较低时）的常用对策主要包括以下几点：\n\n1. **使用 Dice + CE 混合损失**：通过混合损失函数来有效缓解类别不平衡问题。\n2. **应用类别加权 / Focal Loss**：在模型训练中特别针对小类进行加权或使用 Focal Loss，这是提升小类 IoU 的必试方法。\n3. **进行 per-class IoU 分析**：逐类评估 IoU 指标，准确定位短板类别，从而进行针对性的数据增广或采样。\n\n*注：上下文中关于“类别极度不平衡”的专项对策段落内容缺失，以上对策提取自文中“遥感分割调优 checklist”中明确提及用于缓解类别不平衡的工程技巧。*\n\n[来源：04_challenges.md，第1页，f7980753cd26]",
+        "sources": [
+          "04_challenges.md",
+          "04_challenges.md",
+          "09_other_rs_tasks.md",
+          "04_challenges.md",
+          "04_challenges.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 31.8648
+      },
+      {
+        "question_id": "q010",
+        "question": "遥感影像分割的边界模糊问题如何缓解？",
+        "answer": "针对遥感影像分割中的边界模糊问题，可以根据当前知识库内容采取以下几种缓解对策：\n\n1. **引入边界损失**：对边界像素施加额外的惩罚，这种方法常用于医学和遥感分割任务中（如 Kervadec et al. 2019 提出的 Boundary Loss）。\n2. **使用 CRF 后处理**：利用条件随机场（如 DenseCRF）结合影像的颜色与位置信息来平滑预测结果，从而优化边界。\n3. **构建边界感知特征**：在模型中额外增加一个边界检测分支，对地物的边缘进行显式监督。\n4. **保留高分辨率特征**：通过网络设计保留更多细节特征，例如利用 U-Net 的跳跃连接或 DeepLabV3+ 的低层特征融合技术。\n5. **应用 Diffusion 模型（分割即去噪）**：利用 DiffuSeg、DDP 等代表方法，将语义分割建模为条件去噪过程。这种生成式思路能够对边界的不确定性进行更好的建模，非常适合处理类别边界模糊的场景。\n\n[来源：04_challenges.md，第1页，chunk_id=cefca82cad4b]\n[来源：08_frontier_trends.md，第1页，",
+        "sources": [
+          "04_challenges.md",
+          "04_challenges.md",
+          "04_challenges.md",
+          "08_frontier_trends.md",
+          "08_frontier_trends.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 41.7663
+      },
+      {
+        "question_id": "q011",
+        "question": "Focal Loss 的原理是什么？γ 参数通常取多少？",
+        "answer": "根据上下文，Focal Loss 的相关信息如下：\n\n* **原理（公式核心）**：其公式核心为 `-(1-p_t)^γ · log(p_t)`，主要适用于难分样本或小类的场景。\n* **γ 参数取值**：γ 参数通常取值为 **2**（此外通常还会配合参数 α=0.25 一起使用）。\n\n[来源：06_training_recipes.md，第1页，00b407d23bb7]",
+        "sources": [
+          "06_training_recipes.md"
+        ],
+        "keyword_coverage": 0.5,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 12.4615
+      },
+      {
+        "question_id": "q012",
+        "question": "Dice Loss 与交叉熵混合损失在分割任务中为什么常用？",
+        "answer": "在分割任务中，Dice Loss 与交叉熵（CE）混合损失之所以常用，是因为两者的特性互补，能够兼顾像素级监督与区域级优化。具体原因如下：\n\n1. **交叉熵（CE）提供像素级监督**：CE 损失能够提供像素级梯度，有助于模型训练时的收敛稳定性。\n2. **Dice Loss 优化区域级指标**：Dice Loss 能够直接优化 IoU 类指标，对类别不平衡场景中的小类（小目标）更加敏感和友好。\n3. **两者优势互补**：通过将二者结合（如常用配置 `loss = α × CE + β × Dice`），可以同时发挥 CE 保证收敛稳定和 Dice 关注小类的优势。\n\n参考来源：\n[来源：06_training_recipes.md，第1页，ca2828c7f4fe]\n[来源：04_challenges.md，第1页，7211337ca40e]",
+        "sources": [
+          "06_training_recipes.md",
+          "04_challenges.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 17.0661
+      },
+      {
+        "question_id": "q_out_001",
+        "question": "请介绍 Transformer 在机器翻译中的 BLEU 计算细节",
+        "answer": "根据当前知识库内容，无法确定该问题的答案。",
+        "sources": [],
+        "keyword_coverage": 1.0,
+        "source_hit": 0,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 0.337
+      },
+      {
+        "question_id": "q_out_002",
+        "question": "如何在 Linux 服务器上安装并配置 Nginx 反向代理？",
+        "answer": "根据当前知识库内容，无法确定该问题的答案。",
+        "sources": [],
+        "keyword_coverage": 1.0,
+        "source_hit": 0,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 0.1657
+      },
+      {
+        "question_id": "q_out_003",
+        "question": "请详细介绍 ImageNet 数据集的图像分类评测协议和 top-1 / top-5 accuracy 的计算方式",
+        "answer": "根据当前知识库内容，无法确定该问题的答案。",
+        "sources": [
+          "05_benchmarks.md",
+          "09_other_rs_tasks.md",
+          "09_other_rs_tasks.md",
+          "07_frameworks.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 0,
+        "refusal_accuracy": 0,
+        "min_length_satisfied": 1,
+        "latency": 5.8594
+      },
+      {
+        "question_id": "q013",
+        "question": "LoveDA 数据集有哪些类别？",
+        "answer": "根据上下文，LoveDA 数据集共有 7 个类别（包含背景），具体类别如下：\n\n1. building（建筑）\n2. road（道路）\n3. water（水体）\n4. bareland（裸地）\n5. forest（森林）\n6. agriculture（农业）\n7. background（背景）\n\n[来源：07_frameworks.md，第1页，chunk_id=8cc8fee4d955]",
+        "sources": [
+          "07_frameworks.md",
+          "07_frameworks.md",
+          "07_frameworks.md",
+          "01_datasets.md",
+          "01_datasets.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 6.8004
+      },
+      {
+        "question_id": "q014",
+        "question": "mIoU 是什么？为什么比 Pixel Accuracy 更适合分割任务？",
+        "answer": "关于 **mIoU 是什么**：\n*   **定义**：mIoU（Mean IoU，平均交并比）是指所有类别 IoU（交并比）的算术平均。\n*   **公式**：mIoU = (1/C) Σ_i IoU_i\n*   **行业地位**：它是遥感语义分割论文与竞赛的**第一指标**（LoveDA、DeepGlobe、ISPRS benchmark 等均以 mIoU 排名）。\n*   **注意事项**：mIoU 对小类不友好（小类 IoU 波动大），因此需要配合 per-class IoU 或 FWIoU 一起参考。\n\n关于 **为什么比 Pixel Accuracy 更适合分割任务**：\n根据当前知识库内容，无法确定该问题的答案。\n\n参考来源：\n[来源：03_metrics.md，第1页，chunk_id=103ed3ae71c6]",
+        "sources": [
+          "03_metrics.md",
+          "03_metrics.md"
+        ],
+        "keyword_coverage": 0.6,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 19.8385
+      },
+      {
+        "question_id": "q015",
+        "question": "已知 TP=80, FP=10, FN=20，帮我计算 IoU。",
+        "answer": "根据当前知识库内容，无法确定该问题的答案。",
+        "sources": [],
+        "keyword_coverage": 0.0,
+        "source_hit": 0,
+        "refusal_accuracy": 0,
+        "min_length_satisfied": 0,
+        "latency": 0.5809
+      },
+      {
+        "question_id": "q016",
+        "question": "比较 U-Net 和 DeepLabV3+ 在遥感语义分割中的优缺点。",
+        "answer": "基于当前知识库内容，U-Net 和 DeepLabV3+ 在遥感语义分割中的优缺点比较如下：\n\n**1. U-Net**\n*   **优点**：\n    *   结构简洁、参数量小，对小数据集友好。\n    *   采用编码器-解码器对称结构与跳跃连接，能很好地保留边界细节。\n*   **应用表现**：\n    *   在数据量不大时表现稳健，是遥感分割中使用频率最高的 baseline 之一。\n    *   适用于建筑提取、道路提取、农田分割，以及结合滤波方法的 SAR 影像水域/建筑区提取。\n\n**2. DeepLabV3+**\n*   **优点**：\n    *   多尺度建模能力强，对大小目标都友好。\n    *   引入了空洞卷积（扩大感受野且不降分辨率）并融合了 ASPP（多尺度特征聚合）与低层特征。\n*   **应用表现**：\n    *   是遥感分割中最常用的强 baseline，常被推荐用于像素级地物分类（语义分割）任务。常搭配 ResNet-50/101、Xception、HRNet 等主干网络。\n\n参考来源：\n[来源：02_models.md，第1页，chun",
+        "sources": [
+          "02_models.md",
+          "02_models.md",
+          "08_frontier_trends.md",
+          "08_frontier_trends.md",
+          "09_other_rs_tasks.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 14.0424
+      },
+      {
+        "question_id": "q017",
+        "question": "对比 DeepLabV3+ 和 SegFormer 在 LoveDA 数据集上的架构差异和可能的表现差异。",
+        "answer": "",
+        "sources": [
+          "06_training_recipes.md",
+          "05_benchmarks.md",
+          "05_benchmarks.md",
+          "02_models.md"
+        ],
+        "keyword_coverage": 0.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 0,
+        "latency": 41.7373
+      },
+      {
+        "question_id": "q018",
+        "question": "语义分割数据集有什么特点和共性？",
+        "answer": "根据当前知识库内容，无法确定该问题的答案。",
+        "sources": [
+          "07_frameworks.md",
+          "01_datasets.md",
+          "05_benchmarks.md",
+          "02_models.md",
+          "05_benchmarks.md"
+        ],
+        "keyword_coverage": 0.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 0,
+        "latency": 18.733
+      }
+    ],
+    "summary": {
+      "keyword_coverage_avg": 0.7222,
+      "source_hit_rate": 0.8095,
+      "refusal_accuracy": 0.9048,
+      "min_length_satisfied_rate": 0.8095,
+      "avg_latency": 15.1217,
+      "answer_score": 0.7801
+    },
+    "params": {
+      "chunk_size": 400,
+      "chunk_overlap": 80,
+      "similarity_threshold": 0.6
+    }
+  },
+  "default": {
+    "label": "default",
+    "details": [
+      {
+        "question_id": "q001",
+        "question": "LoveDA 数据集包含哪些地物类别？它的空间分辨率是多少？",
+        "answer": "LoveDA 数据集的地物类别及空间分辨率如下：\n\n* **地物类别（共 7 类）**：建筑、道路、水体、裸地、林地、农业、背景。\n* **空间分辨率**：0.3 m。\n\n[来源：01_datasets.md，第1页，44797aaddddd]",
+        "sources": [
+          "01_datasets.md",
+          "07_frameworks.md",
+          "01_datasets.md",
+          "05_benchmarks.md",
+          "01_datasets.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 15.9629
+      },
+      {
+        "question_id": "q002",
+        "question": "iSAID 数据集的实例标注规模有多大？它使用哪些评价指标？",
+        "answer": "iSAID 数据集的实例标注规模及相关评价指标如下：\n\n1. **实例标注规模**：包含 **655,451** 个实例标注（从 2806 张大型航空影像中裁剪出 1411 张子图）。\n2. **评价指标**：\n   - **mAP**（用于实例分割任务）\n   - **mIoU**（用于语义分割任务）\n\n[来源：01_datasets.md，第1页，chunk_id=676beeb8cf3c]",
+        "sources": [
+          "05_benchmarks.md",
+          "01_datasets.md",
+          "01_datasets.md",
+          "01_datasets.md",
+          "05_benchmarks.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 5.521
+      },
+      {
+        "question_id": "q003",
+        "question": "DeepGlobe Land Cover 数据集的影像来自哪颗卫星？共有多少类别？",
+        "answer": "DeepGlobe Land Cover 数据集的影像来自 WorldView-3 卫星，共有 7 个类别。\n\n[来源：01_datasets.md，第1页，chunk_id=f07a0f1cdf2e]",
+        "sources": [
+          "01_datasets.md",
+          "05_benchmarks.md",
+          "05_benchmarks.md",
+          "01_datasets.md",
+          "01_datasets.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 6.1045
+      },
+      {
+        "question_id": "q004",
+        "question": "请对比 U-Net 和 DeepLabV3+ 的结构特点与适用场景。",
+        "answer": "基于给定的上下文，U-Net 和 DeepLabV3+ 的结构特点与适用场景对比如下：\n\n### 一、 结构特点对比\n* **DeepLabV3+**：\n  - 采用 **Encoder-Decoder 结构**。\n  - 核心创新是引入了**空洞卷积**，能够在不降低分辨率的情况下扩大感受野。\n  - 使用 **ASPP（空洞空间金字塔池化）** 模块进行多尺度特征聚合，并将 ASPP 的输出与低层特征进行融合。\n* **U-Net**：\n  - 上下文中未详细说明 U-Net 的具体网络结构细节，但在基准测试中常搭配 ResNet-50 作为骨干网络使用。\n\n### 二、 适用场景与优势对比\n* **DeepLabV3+**：\n  - **优势**：多尺度建模能力强，对大小目标都十分友好，结果稳定。\n  - **适用场景**：非常适合作为投论文的强 baseline，是遥感分割领域最常用的强 baseline 模型。\n* **U-Net**：\n  - **优势**：训练速度快，调参简单。\n  - **适用场景**：非常适合用于快速的原型验证。\n\n### 三、 预期性能对比 (参考基",
+        "sources": [
+          "05_benchmarks.md",
+          "02_models.md",
+          "06_training_recipes.md",
+          "05_benchmarks.md",
+          "09_other_rs_tasks.md"
+        ],
+        "keyword_coverage": 0.6,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 28.4464
+      },
+      {
+        "question_id": "q005",
+        "question": "SegFormer 在遥感分割中的核心优势和适用场景是什么？",
+        "answer": "SegFormer 在遥感分割中的核心优势和适用场景如下：\n\n**1. 核心优势**\n* **适配任意分辨率**：由于未采用位置编码，模型可以适配任意输入分辨率。\n* **特征融合效果好**：具备优异的多尺度特征融合能力。\n* **参数效率高**：整体架构参数效率高，适合轻量化部署。\n\n**2. 适用场景**\n* **图像类型**：适用于高分辨率遥感影像。\n* **目标类型**：适用于多尺度地物分割。\n* **部署需求**：在遥感分割的轻量化部署中，常选用 SegFormer-B0/B2 版本。\n\n[来源：02_models.md，第1页，chunk_id=2ef1d620ac81]",
+        "sources": [
+          "02_models.md",
+          "02_models.md",
+          "02_models.md",
+          "08_frontier_trends.md",
+          "08_frontier_trends.md"
+        ],
+        "keyword_coverage": 0.4,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 13.8432
+      },
+      {
+        "question_id": "q006",
+        "question": "DeepLab 系列模型从 v1 到 v3+ 的核心创新分别有哪些？",
+        "answer": "DeepLab 系列模型从 v1 到 v3+ 的核心创新如下：\n\n*   **v1/v2**：引入了空洞卷积，用于扩大感受野且不降低分辨率。\n*   **v2**：引入 ASPP（Atrous Spatial Pyramid Pooling，空洞空间金字塔池化）来进行多尺度特征聚合。\n*   **v3**：改进了 ASPP 模块，并加入了全局平均池化分支。\n*   **v3+**：采用了 Encoder-Decoder 结构，将 ASPP 的输出与低层特征进行融合。\n\n[来源：02_models.md，第1页，chunk_id=b366c0380682]",
+        "sources": [
+          "02_models.md",
+          "09_other_rs_tasks.md",
+          "06_training_recipes.md",
+          "05_benchmarks.md",
+          "06_training_recipes.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 11.6114
+      },
+      {
+        "question_id": "q007",
+        "question": "请解释 mIoU 的计算方式，并说明为什么它是遥感语义分割的首选指标。",
+        "answer": "基于给定的上下文，mIoU（Mean IoU，平均交并比）的计算方式及其作为首选指标的原因如下：\n\n### 一、 mIoU 的计算方式\nmIoU 是所有类别交并比的算术平均。其计算基于混淆矩阵，具体步骤如下：\n1. **计算单个类别的 IoU**：对任意类别 $i$，其 IoU 为真实类别 $i$ 与预测类别 $i$ 的交集除以它们的并集。\n   - 公式：$IoU_i = M[i][i] / ( \\Sigma_j M[i][j] + \\Sigma_j M[j][i] - M[i][i] )$ \n   - （其中 $M[i][j]$ 表示真实类别为 $i$、预测类别为 $j$ 的像素数）\n2. **计算 mIoU**：对所有 C 个类别的 IoU 求算术平均。\n   - 公式：$mIoU = (1/C) \\Sigma_i IoU_i$\n\n### 二、 为什么它是遥感语义分割的首选指标\n1. **行业竞赛与论文的标准**：在遥感领域，mIoU 是语义分割论文与竞赛的**第一指标**。主流的数据集和竞赛（如 LoveDA、DeepGlobe、ISPRS benchmark 等）均以 mIo",
+        "sources": [
+          "03_metrics.md",
+          "03_metrics.md",
+          "03_metrics.md",
+          "05_benchmarks.md",
+          "04_challenges.md"
+        ],
+        "keyword_coverage": 0.8,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 23.7299
+      },
+      {
+        "question_id": "q008",
+        "question": "Pixel Accuracy 在遥感分割评测中存在什么局限？",
+        "answer": "根据提供的上下文，Pixel Accuracy（像素精度，PA）在遥感分割评测中主要存在以下局限：\n\n1. **对小类（小目标）不敏感**：PA 是最直观的指标，但其数值容易被影像中占主导地位的大类（如背景、林地）掩盖，无法真实反映小类的分割效果。\n2. **容易造成评估假象**：在遥感影像中，当“背景”或“裸地”等占比极高（如 70% 以上）时，即使 PA 表现得很高，小目标（如车辆、建筑）也可能存在完全分错的情况。\n\n[来源：03_metrics.md，第1页，chunk_id=6d7fb97f180b]",
+        "sources": [
+          "04_challenges.md",
+          "03_metrics.md",
+          "09_other_rs_tasks.md",
+          "08_frontier_trends.md",
+          "08_frontier_trends.md"
+        ],
+        "keyword_coverage": 0.5,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 14.9303
+      },
+      {
+        "question_id": "q009",
+        "question": "遥感分割中类别极度不平衡问题有哪些常用对策？",
+        "answer": "在遥感语义分割中，针对类别极度不平衡的问题，常用对策主要有以下6种：\n\n1. **加权交叉熵**：按类别频率的倒数进行赋权，在 PyTorch 中可通过 `CrossEntropyLoss(weight=...)` 实现。\n2. **Focal Loss**：对容易分类的样本降低权重（公式为 `(1 - p_t)^γ`），使模型更聚焦于难分的小类，参数 γ 通常取 2。\n3. **Dice Loss / Tversky Loss**：直接优化 IoU 类指标，对小类别更加敏感（Dice Loss 公式 = 1 - 2|X∩Y| / (|X|+|Y|)）。\n4. **混合损失**：结合像素级监督与区域级优化，常用的组合为 `loss = α × CE + β × Dice`。\n5. **过采样 / 类平衡采样**：在模型训练时，针对小类别密集的影像块进行加权采样。\n6. **OHEM（Online Hard Example Mining）**：在训练过程中，只对损失值最高的像素进行梯度反传。\n\n[来源：04_challenges.md，第1页，2074c303b183]",
+        "sources": [
+          "04_challenges.md",
+          "09_other_rs_tasks.md",
+          "04_challenges.md",
+          "04_challenges.md",
+          "03_metrics.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 10.9721
+      },
+      {
+        "question_id": "q010",
+        "question": "遥感影像分割的边界模糊问题如何缓解？",
+        "answer": "缓解遥感影像分割中的边界模糊（Boundary Ambiguity）问题，可以采取以下几种对策：\n\n1. **Boundary Loss（边界损失）**：对边界像素施加额外惩罚（如 Kervadec et al. 2019 提出的方法），常用于医学和遥感分割任务中。\n2. **CRF 后处理**：利用条件随机场（如 DenseCRF），结合影像的颜色与位置信息对预测结果进行平滑处理。\n3. **边界感知特征**：在网络中额外添加一个边界检测分支，对地物的边缘进行显式监督。\n4. **高分辨率特征保留**：采用如 U-Net 的 skip connection（跳跃连接）或 DeepLabV3+ 的 low-level feature（低层特征）融合机制，以此保留高分辨率细节。\n5. **引入 Diffusion 模型**：将语义分割建模为条件去噪过程（如 DiffuSeg），该方法对边界不确定性的建模效果更好，非常适合类别边界模糊的场景。\n\n参考来源：\n[来源：04_challenges.md，第1页，chunk_id=2074c303b183]\n[来源：08_frontier_tre",
+        "sources": [
+          "04_challenges.md",
+          "04_challenges.md",
+          "04_challenges.md",
+          "09_other_rs_tasks.md",
+          "08_frontier_trends.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 35.6465
+      },
+      {
+        "question_id": "q011",
+        "question": "Focal Loss 的原理是什么？γ 参数通常取多少？",
+        "answer": "Focal Loss 的原理及 γ 参数的取值如下：\n\n**1. 原理**\nFocal Loss 的公式核心为 `-(1-p_t)^γ · log(p_t)`。它主要用于解决类别不平衡问题，针对难分样本或小类，通过参数控制难易样本的权重。\n\n**2. γ 参数的取值**\n*   **标准设置**：通常取 **γ=2**。\n*   **建议范围**：建议在 **1~2** 之间。需要注意，γ 太大会导致训练不稳定。\n\n[来源：06_training_recipes.md，第1页，chunk_id=d2fb2495a334]\n[来源：06_training_recipes.md，第1页，chunk_id=d8f02fb0d085]",
+        "sources": [
+          "06_training_recipes.md",
+          "06_training_recipes.md",
+          "06_training_recipes.md",
+          "06_training_recipes.md",
+          "09_other_rs_tasks.md"
+        ],
+        "keyword_coverage": 0.75,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 17.3129
+      },
+      {
+        "question_id": "q012",
+        "question": "Dice Loss 与交叉熵混合损失在分割任务中为什么常用？",
+        "answer": "Dice Loss 与交叉熵（CE）混合损失在分割任务中常用的原因主要在于两者的优势能够互补，具体如下：\n\n1. **像素级监督与收敛稳定（CE 的作用）**：交叉熵（CE）损失能够提供像素级的梯度，有助于模型在训练过程中保持稳定的收敛状态，提供基础的像素级监督。\n2. **区域级优化与小类友好（Dice 的作用）**：Dice Loss 能够直接优化 IoU 类指标（进行区域级优化），并且对小目标或小类别（小类）更加敏感，有助于缓解类别不平衡问题。\n3. **优势互补**：结合使用可以兼顾像素级监督与区域级优化。CE 弥补了 Dice Loss 训练初期梯度不稳定的问题，而 Dice Loss 弥补了 CE Loss 在区域优化和类别不平衡上的短板，因此成为分割任务的标准配置和常用组合。\n\n[来源：06_training_recipes.md，第1页，chunk_id=d8f02fb0d085]\n[来源：04_challenges.md，第1页，chunk_id=2074c303b183]",
+        "sources": [
+          "06_training_recipes.md",
+          "04_challenges.md",
+          "06_training_recipes.md",
+          "08_frontier_trends.md",
+          "07_frameworks.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 12.0815
+      },
+      {
+        "question_id": "q_out_001",
+        "question": "请介绍 Transformer 在机器翻译中的 BLEU 计算细节",
+        "answer": "根据当前知识库内容，无法确定该问题的答案。",
+        "sources": [
+          "06_training_recipes.md",
+          "06_training_recipes.md",
+          "07_frameworks.md",
+          "03_metrics.md",
+          "02_models.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 0,
+        "refusal_accuracy": 0,
+        "min_length_satisfied": 1,
+        "latency": 10.1408
+      },
+      {
+        "question_id": "q_out_002",
+        "question": "如何在 Linux 服务器上安装并配置 Nginx 反向代理？",
+        "answer": "根据当前知识库内容，无法确定该问题的答案。",
+        "sources": [
+          "10_deployment.md",
+          "07_frameworks.md",
+          "10_deployment.md",
+          "10_deployment.md",
+          "10_deployment.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 0,
+        "refusal_accuracy": 0,
+        "min_length_satisfied": 1,
+        "latency": 13.3502
+      },
+      {
+        "question_id": "q_out_003",
+        "question": "请详细介绍 ImageNet 数据集的图像分类评测协议和 top-1 / top-5 accuracy 的计算方式",
+        "answer": "根据当前知识库内容，无法确定该问题的答案。",
+        "sources": [
+          "09_other_rs_tasks.md",
+          "09_other_rs_tasks.md",
+          "07_frameworks.md",
+          "09_other_rs_tasks.md",
+          "05_benchmarks.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 0,
+        "refusal_accuracy": 0,
+        "min_length_satisfied": 1,
+        "latency": 11.0801
+      },
+      {
+        "question_id": "q013",
+        "question": "LoveDA 数据集有哪些类别？",
+        "answer": "根据上下文，LoveDA 数据集共有 7 个类别，具体定义如下：\n\n1. 建筑（building）\n2. 道路（road）\n3. 水体（water）\n4. 裸地\n5. 林地\n6. 农业\n7. 背景\n\n[来源：01_datasets.md，第1页，chunk_id=44797aaddddd]",
+        "sources": [
+          "01_datasets.md",
+          "07_frameworks.md",
+          "07_frameworks.md",
+          "05_benchmarks.md",
+          "06_training_recipes.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 11.1014
+      },
+      {
+        "question_id": "q014",
+        "question": "mIoU 是什么？为什么比 Pixel Accuracy 更适合分割任务？",
+        "answer": "**mIoU 的定义：**\nmIoU（Mean IoU，平均交并比）是指所有类别 IoU（交并比）的算术平均值。\n- **公式**：mIoU = (1/C) Σ_i IoU_i\n- **地位**：它是遥感语义分割论文与竞赛的“第一指标”。\n[来源：03_metrics.md，第1页，chunk_id=1ef282946326]\n\n**为什么比 Pixel Accuracy (PA) 更适合分割任务？**\n1. **PA 存在掩盖效应**：PA 的计算方式是“预测正确的像素 / 总像素数”。在遥感影像中，背景或大类（如裸地、林地）往往占据 70%~80% 以上的像素，这会导致 PA 即使很高，也只是大类预测正确的结果，完全可能掩盖小目标（如车辆、建筑）被完全分错的情况。\n2. **IoU 同时惩罚漏检与误检**：IoU 是真实类别与预测类别的交集与并集之比，该指标同时考虑了“漏检”和“误检”，是分割任务最核心的指标。因此，基于 IoU 求平均的 mIoU 比 PA 更能客观反映各类别（尤其是被均等看待的各类）的分割质量。\n[来源：03_metrics.md，第1页，chunk_id=6d",
+        "sources": [
+          "03_metrics.md",
+          "03_metrics.md",
+          "07_frameworks.md",
+          "04_challenges.md",
+          "03_metrics.md"
+        ],
+        "keyword_coverage": 0.8,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 24.0144
+      },
+      {
+        "question_id": "q015",
+        "question": "已知 TP=80, FP=10, FN=20，帮我计算 IoU。",
+        "answer": "根据当前知识库内容，无法确定该问题的答案。\n\n（注：知识库中提及了 mIoU 的概念及相关性质，但未提供基于 TP、FP、FN 计算 IoU 的具体公式。）\n\n参考来源：\n[来源：03_metrics.md，第1页，chunk_id=1ef282946326]",
+        "sources": [
+          "03_metrics.md",
+          "07_frameworks.md",
+          "05_benchmarks.md",
+          "03_metrics.md",
+          "06_training_recipes.md"
+        ],
+        "keyword_coverage": 0.8,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 11.8589
+      },
+      {
+        "question_id": "q016",
+        "question": "比较 U-Net 和 DeepLabV3+ 在遥感语义分割中的优缺点。",
+        "answer": "基于给定的上下文，U-Net 和 DeepLabV3+ 在遥感语义分割中的比较如下：\n\n### 1. U-Net\n*   **优点（适用场景）**：参数少、收敛稳，非常适合在**小数据集**上进行快速起步。\n*   **其他应用**：在特定遥感任务（如 SAR 影像的水域/建筑区提取）中，常配合滤波方法（如 Lee 滤波）使用。\n\n### 2. DeepLabV3+\n*   **优点**：\n    *   **多尺度建模强**：通过核心创新（如空洞卷积扩大感受野、ASPP 多尺度特征聚合、Encoder-Decoder 结构融合低层特征等），对大小目标都友好。\n    *   **工程与科研表现好**：调参成熟，是遥感分割最常用的强 baseline，非常适合作为强 baseline 或用于投论文。\n*   **典型配置**：常搭配 ResNet-50/101、Xception 或 HRNet 作为 backbone。\n\n### 总结对比\n相比于 U-Net 更适合小数据集快速起步，DeepLabV3+ 凭借强大的多尺度特征提取能力和成熟的调参经验，成为了遥感语义分割（像素级地物分类）",
+        "sources": [
+          "02_models.md",
+          "02_models.md",
+          "08_frontier_trends.md",
+          "08_frontier_trends.md",
+          "09_other_rs_tasks.md"
+        ],
+        "keyword_coverage": 0.8,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 20.6395
+      },
+      {
+        "question_id": "q017",
+        "question": "对比 DeepLabV3+ 和 SegFormer 在 LoveDA 数据集上的架构差异和可能的表现差异。",
+        "answer": "基于给定的上下文，DeepLabV3+ 和 SegFormer 在架构与 LoveDA 数据集上的表现差异对比如下：\n\n### 一、 架构差异\n\n1. **核心结构与组件**：\n   * **DeepLabV3+**：基于 CNN 架构，采用 Encoder-Decoder 结构。核心创新是使用空洞卷积（Atrous Convolution）在不降低分辨率的情况下扩大感受野，并使用 ASPP（空洞空间金字塔池化）模块进行多尺度特征聚合。v3+ 版本会将 ASPP 的输出与低层特征进行融合。典型 backbone 包括 ResNet-50/101 等。\n   * **SegFormer**：基于 Transformer 架构，采用纯 Transformer encoder（无位置编码，使用 3×3 卷积做 overlap patch embedding）配合轻量 MLP 解码器。\n\n2. **特性与优势**：\n   * **DeepLabV3+**：多尺度建模能力强，对大小目标都友好。\n   * **SegFormer**：因为无位置编码，可适配任意输入分辨率；多尺度特征融合效果好，且参",
+        "sources": [
+          "06_training_recipes.md",
+          "02_models.md",
+          "08_frontier_trends.md",
+          "02_models.md",
+          "02_models.md"
+        ],
+        "keyword_coverage": 1.0,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 33.2347
+      },
+      {
+        "question_id": "q018",
+        "question": "语义分割数据集有什么特点和共性？",
+        "answer": "根据当前知识库内容，遥感语义分割数据集主要呈现出以下特点和共性：\n\n1. **统一的评价指标**：数据集普遍采用 mIoU（平均交并比）和 OA（总体精度）作为主要的模型评估和排名指标。\n2. **存在显著的域差异**：部分数据集（如 LoveDA）专门划分为不同的场景域（如 Urban 城市场景与 Rural 乡村场景）。由于地物分布差异显著，模型在直接进行跨域推理时通常会出现明显的性能下降，这类数据集常被用于研究跨域泛化问题。\n3. **地物尺度变化极端**：在同一数据集中，不同类别的地物尺度差异极大（例如 iSAID 数据集中的船只与车辆），这对多尺度模型的特征提取能力提出了较高要求。\n4. **类别分布极不均衡**：在部分大尺度数据集（如 DeepGlobe）中，地物类别存在极度不均衡的现象，增加了模型训练和分割的难度。\n5. **模态与分辨率决定数据集难度**：数据集的采集来源、空间分辨率（如 0.3m 等）以及影像模态（如真彩色 vs IRRG）会直接影响地物的清晰度，从而构成不同数据集的评测难度差异（例如高分辨率城市场景难度中等，低分辨率或受限模态场景难度较高）。\n\n参考",
+        "sources": [
+          "07_frameworks.md",
+          "02_models.md",
+          "05_benchmarks.md",
+          "05_benchmarks.md",
+          "01_datasets.md"
+        ],
+        "keyword_coverage": 0.5,
+        "source_hit": 1,
+        "refusal_accuracy": 1,
+        "min_length_satisfied": 1,
+        "latency": 23.9283
+      }
+    ],
+    "summary": {
+      "keyword_coverage_avg": 0.8548,
+      "source_hit_rate": 0.8571,
+      "refusal_accuracy": 0.8571,
+      "min_length_satisfied_rate": 1.0,
+      "avg_latency": 16.9291,
+      "answer_score": 0.8702
+    },
+    "params": {
+      "chunk_size": 800,
+      "chunk_overlap": 120,
+      "similarity_threshold": 0.3
+    }
+  }
+}

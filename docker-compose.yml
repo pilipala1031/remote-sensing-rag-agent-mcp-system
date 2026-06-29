@@ -1,0 +1,79 @@
+# ============================================================
+# docker-compose.yml
+# 一键拉起后端 (FastAPI) + 前端 (Streamlit)，含密钥注入、
+# 数据持久化卷、服务间网络互访。
+#
+# 用法：
+#   1. 复制并填写密钥:  cp .env.example .env  (然后编辑 .env)
+#   2. 构建并启动:      docker compose up -d --build
+#   3. 查看日志:        docker compose logs -f
+#   4. 停止并保留数据:  docker compose down
+#   5. 停止并清空数据:  docker compose down -v
+#
+# 端口映射：
+#   - 后端 API + Swagger:  http://localhost:8000   (/docs)
+#   - 前端 UI:             http://localhost:8501
+# ============================================================
+
+services:
+  # ------------------------------------------------------------
+  # 后端：FastAPI + Chroma + RAG / Agent
+  # ------------------------------------------------------------
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: remote-sensing-rag:latest
+    container_name: rs-rag-backend
+    restart: unless-stopped
+    ports:
+      # 仅绑定本机回环：保留本机调试（http://127.0.0.1:8000/docs），
+      # 但局域网/公网无法直接访问后端 API。
+      # 容器内部仍监听 0.0.0.0:8000，frontend 容器通过 docker 内部
+      # 网络（http://backend:8000）访问不受影响。
+      - "127.0.0.1:8000:8000"
+    env_file:
+      - .env
+    volumes:
+      # 向量库 + 原始文档持久化（命名卷，跨平台兼容）
+      - rs-rag-data:/app/data
+    networks:
+      - rs-rag-net
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3).read()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  # ------------------------------------------------------------
+  # 前端：Streamlit（复用同一镜像，仅覆盖启动命令）
+  # ------------------------------------------------------------
+  frontend:
+    image: remote-sensing-rag:latest
+    container_name: rs-rag-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "8501:8501"
+    environment:
+      # 通过 compose 服务名访问后端，不走 127.0.0.1
+      RAG_API_BASE: "http://backend:8000"
+    command: >
+      streamlit run frontend/streamlit_app.py
+      --server.port=8501
+      --server.address=0.0.0.0
+      --server.headless=true
+      --browser.gatherUsageStats=false
+    networks:
+      - rs-rag-net
+
+networks:
+  rs-rag-net:
+    driver: bridge
+
+volumes:
+  rs-rag-data:
+    driver: local

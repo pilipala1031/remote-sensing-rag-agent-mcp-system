@@ -1,0 +1,19 @@
+{
+  "fixed_params": {
+    "chunk_size": 800,
+    "chunk_overlap": 120,
+    "similarity_threshold": 0.3,
+    "top_k": 5
+  },
+  "best_rerank_config": {
+    "name": "rerank_k10",
+    "description": "向量检索 candidate_k=10，rerank 后保留 top_k=5",
+    "use_rerank": true,
+    "candidate_k": 10,
+    "final_top_k": 5
+  },
+  "baseline_retrieval_score": 0.8486,
+  "best_rerank_retrieval_score": 0.8569,
+  "baseline_answer_score": 0.8214,
+  "rerank_answer_score": 0.8666
+}

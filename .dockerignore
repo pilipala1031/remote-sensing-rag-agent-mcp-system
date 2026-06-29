@@ -1,0 +1,58 @@
+# ============================================================
+# .dockerignore
+# 控制 docker build 上下文，避免把密钥 / 数据 / 缓存 / 测试
+# 文件打进镜像层，减小体积并防止敏感信息泄漏。
+# ============================================================
+
+# ---- 密钥（绝对不能进镜像）----
+.env
+.env.*
+!.env.example
+
+# ---- 版本控制与 IDE 元数据 ----
+.git/
+.gitignore
+.gitattributes
+.github/
+.vscode/
+.idea/
+.claude/
+*.swp
+*.swo
+.DS_Store
+
+# ---- Python 缓存与虚拟环境 ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.whl
+.venv/
+venv/
+env/
+
+# ---- pytest / 测试 / 覆盖率（构建产物，运行时不需要）----
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+tests/
+
+# ---- 数据卷（通过 -v / compose volumes 注入，不进镜像）----
+data/
+!data/.gitkeep
+
+# ---- 实验与评估结果（体积大，运行时无关）----
+eval/results/
+experiments/*/results/
+experiments/**/__pycache__/
+
+# ---- 文档（开发期资料，运行容器无需）----
+docs/
+CLAUDE.md
+README.md
+
+# ---- 杂项临时文件 ----
+nul
+*.log
+*.tmp
+*.bak

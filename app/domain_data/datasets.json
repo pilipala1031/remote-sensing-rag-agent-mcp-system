@@ -1,0 +1,116 @@
+[
+  {
+    "name": "LoveDA",
+    "full_name": "Land-Cover Domain Adaptation Dataset",
+    "task": "语义分割 / 域适应",
+    "resolution": "0.3 m（航空影像）",
+    "classes": 7,
+    "class_names": ["建筑", "道路", "水体", "贫瘠", "森林", "农业", "背景"],
+    "scenes": ["城市", "郊区", "乡村"],
+    "image_count": "5987 张（3687 训练 / 1800 测试 / 500 验证）",
+    "image_size": "1024 x 1024",
+    "strengths": [
+      "覆盖城市/郊区/乡村三种场景，域差异明显",
+      "高分辨率 0.3m 航空影像，细节丰富",
+      "适合域适应和域泛化研究",
+      "类别定义清晰，标注质量高"
+    ],
+    "limitations": [
+      "仅 7 个类别，粒度较粗",
+      "乡村场景样本相对较少",
+      "不适用于细粒度地物分类"
+    ],
+    "notes": "由南京大学发布，是遥感域适应研究的标杆数据集。标签图像像素值直接对应类别索引（0-6）。"
+  },
+  {
+    "name": "iSAID",
+    "full_name": "Instance Segmentation in Aerial Images Dataset",
+    "task": "实例分割 / 语义分割",
+    "resolution": "0.3 ~ 0.5 m（DOTD 光学影像裁剪）",
+    "classes": 15,
+    "class_names": ["船舶", "飞机", "储罐", "棒球场", "网球场", "篮球场", "田径场", "港口", "车辆", "桥梁", "大型建筑", "小型建筑", "飞机跑道", "直升机", "环形交叉口"],
+    "scenes": ["多种遥感场景"],
+    "image_count": "888 张大图裁剪为 3733 个 512x512 / 896 块",
+    "image_size": "块大小 512x512 或 896x896",
+    "strengths": [
+      "15 个类别，细粒度高",
+      "支持实例分割与语义分割双重任务",
+      "基于 DOTA 高质量影像，空间分辨率高",
+      "标注为多边形矢量格式，精度高"
+    ],
+    "limitations": [
+      "大尺寸影像需裁剪处理",
+      "实例分割标注转语义分割需额外脚本",
+      "部分类别样本不平衡"
+    ],
+    "notes": "由 CVMDL 实验室发布，是目前最大规模的航空实例分割数据集。提供 COCO 格式标注。"
+  },
+  {
+    "name": "DeepGlobe",
+    "full_name": "DeepGlobe Satellite Challenge Dataset",
+    "task": "语义分割（道路/建筑/地表覆盖）",
+    "resolution": "0.5 m（DigitalGlobe 卫星影像）",
+    "classes": 7,
+    "class_names": ["城市", "农业", "牧场", "森林", "水体", "贫瘠", "未知"],
+    "scenes": ["全球多地区（拉斯维加斯、上海、巴黎等）"],
+    "image_count": "803 张训练 + 63 验证 + 63 测试（地表覆盖任务）",
+    "image_size": "2448 x 2448",
+    "strengths": [
+      "覆盖全球多个城市，地理多样性好",
+      "同时包含道路提取、建筑检测、地表覆盖三个子任务",
+      "高分辨率大尺寸影像，信息密度高"
+    ],
+    "limitations": [
+      "地表覆盖仅 7 类",
+      "测试集标注未公开，需提交服务器评测",
+      "大尺寸影像对显存要求高"
+    ],
+    "notes": "CVPR 2018 workshop 数据集，是地表覆盖分割的经典 benchmark。道路和建筑子任务使用二值标注。"
+  },
+  {
+    "name": "Potsdam",
+    "full_name": "ISPRS Potsdam Dataset",
+    "task": "语义分割（城市场景）",
+    "resolution": "0.05 m（VHR 航空影像）",
+    "classes": 6,
+    "class_names": ["不透水面", "建筑", "低矮植被", "树木", "汽车", "背景/集装箱"],
+    "scenes": ["城市（德国波茨坦）"],
+    "image_count": "38 块 6000x6000 大图",
+    "image_size": "6000 x 6000（通常裁剪为 512x512 或 1024x1024）",
+    "strengths": [
+      "超高分辨率 5cm，细节极为丰富",
+      "同时提供 IRRG（红外+红+绿）和 RGB + DSM 数据",
+      "标注精确到像素级别",
+      "ISPRS 标准基准，广泛引用"
+    ],
+    "limitations": [
+      "仅覆盖单一城市",
+      "文件巨大，下载和处理成本高",
+      "DSM 配合使用需要额外预处理"
+    ],
+    "notes": "ISPRS 2D 语义分割竞赛数据集。提供真实正射影像（TOP）和 DSM 栅格数据，支持多模态融合研究。"
+  },
+  {
+    "name": "Vaihingen",
+    "full_name": "ISPRS Vaihingen Dataset",
+    "task": "语义分割（城乡场景）",
+    "resolution": "0.09 m（VHR 航空影像）",
+    "classes": 6,
+    "class_names": ["不透水面", "建筑", "低矮植被", "树木", "汽车", "背景/集装箱"],
+    "scenes": ["城市与乡村（德国法伊辛根）"],
+    "image_count": "33 块不等大小大图（平均约 2500x2000）",
+    "image_size": "不等（平均约 2500 x 2000，裁剪为 512x512）",
+    "strengths": [
+      "与 Potsdam 类别一致，便于迁移/对比实验",
+      "提供 IRRG + DSM 数据，支持多模态研究",
+      "包含纯城区和乡村场景，场景多样性好",
+      "ISPRS 标准基准"
+    ],
+    "limitations": [
+      "分辨率低于 Potsdam（9cm vs 5cm）",
+      "影像尺寸不规则，需额外处理",
+      "区域覆盖范围有限"
+    ],
+    "notes": "ISPRS 2D 语义分割竞赛数据集，与 Potsdam 互补。标签图像中 0 表示无效区域（白色边界）。"
+  }
+]

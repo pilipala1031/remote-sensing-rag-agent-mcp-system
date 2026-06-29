@@ -1,0 +1,17 @@
+{
+  "chunk_configs": [
+    {"name": "c400_o80",   "chunk_size": 400,  "chunk_overlap": 80},
+    {"name": "c600_o100",  "chunk_size": 600,  "chunk_overlap": 100},
+    {"name": "c800_o120",  "chunk_size": 800,  "chunk_overlap": 120},
+    {"name": "c1000_o150", "chunk_size": 1000, "chunk_overlap": 150},
+    {"name": "c1200_o180", "chunk_size": 1200, "chunk_overlap": 180}
+  ],
+  "thresholds": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7],
+  "fixed_threshold_stage1": 0.3,
+  "top_k": 5,
+  "default_params": {
+    "chunk_size": 800,
+    "chunk_overlap": 120,
+    "similarity_threshold": 0.3
+  }
+}
