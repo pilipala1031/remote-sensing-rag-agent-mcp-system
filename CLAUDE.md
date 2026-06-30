@@ -13,6 +13,8 @@ A Streamlit frontend (`frontend/streamlit_app.py`) wraps both modes behind a UI 
 
 A standalone **MCP server** (`mcp_server/server.py`, registered in `.mcp.json` as `remote-sensing-kb`) exposes the same domain knowledge as two MCP tools (`search_remote_sensing_kb`, `calculate_remote_sensing_metric`) so external MCP clients (e.g. Claude Code/Desktop) can query the KB directly. It shares the IoU/Precision/Recall/F1 kernel with the Agent path via `core/metrics.py`.
 
+A product-layer **Work Unit** subsystem spans all three paths: each RAG/Agent response carries an optional `work_unit_candidate`, the Streamlit frontend has a "保存为 Work Unit" button to persist it (manual, not auto), and MCP tool responses carry a non-persisted `work_unit_fragment`. Saved work units are stored as JSON under `data/work_units/` and exposed via a 4th router (`/api/work_units`). See `docs/work_unit_design.md`.
+
 All code comments, prompts, log messages, tool outputs, and API error strings are in **Chinese**; preserve this convention when editing. The only intentional English surfaces are `@tool` `description` fields (so the LLM can reliably choose tools).
 
 ## Commands
@@ -55,11 +57,13 @@ docker compose up -d --build
 python -m mcp_server.server
 ```
 
-Required env (see `.env.example`): `SILICONFLOW_API_KEY`, `LLM_API_KEY`, `LLM_BASE_URL`, `LLM_MODEL`, `RAG_API_BASE` (frontend → backend URL), `DEMO_PASSWORD` (Streamlit password gate for public demos). Tunable params: `CHUNK_SIZE`, `CHUNK_OVERLAP`, `TOP_K`, `SIMILARITY_THRESHOLD` (default 0.3), `USE_RERANK` (default false), `RERANK_CANDIDATE_K` (default 10), `ENABLE_AGENT_VERIFICATION` (default true), `AGENT_VERIFICATION_MODE` (default `deferred`), `AGENT_VERIFICATION_LEVEL` (default `lightweight`), `AGENT_MAX_TOKENS` (default 1000), `ENABLE_AGENT_CACHE` (default false), `ENABLE_AGENT_RESPONSE_CACHE` (default true), `AGENT_RESPONSE_CACHE_TTL_SECONDS` (default 600), `AGENT_RESPONSE_CACHE_MAX_SIZE` (default 100). Rerank reuses `SILICONFLOW_API_KEY`/`SILICONFLOW_BASE_URL`; `RERANK_MODEL` defaults to `BAAI/bge-reranker-v2-m3`.
+Required env (see `.env.example`): `SILICONFLOW_API_KEY`, `LLM_API_KEY`, `LLM_BASE_URL`, `LLM_MODEL`, `RAG_API_BASE` (frontend → backend URL), `DEMO_PASSWORD` (Streamlit password gate for public demos). Tunable params: `CHUNK_SIZE`, `CHUNK_OVERLAP`, `TOP_K`, `SIMILARITY_THRESHOLD` (default 0.3), `USE_RERANK` (default false), `RERANK_CANDIDATE_K` (default 10), `ENABLE_AGENT_VERIFICATION` (default true), `AGENT_VERIFICATION_MODE` (default `deferred`), `AGENT_VERIFICATION_LEVEL` (default `lightweight`), `AGENT_MAX_TOKENS` (default 1000), `ENABLE_AGENT_CACHE` (default false), `ENABLE_AGENT_RESPONSE_CACHE` (default true), `AGENT_RESPONSE_CACHE_TTL_SECONDS` (default 600), `AGENT_RESPONSE_CACHE_MAX_SIZE` (default 100), `WORK_UNIT_DIR` (default `./data/work_units`). Rerank reuses `SILICONFLOW_API_KEY`/`SILICONFLOW_BASE_URL`; `RERANK_MODEL` defaults to `BAAI/bge-reranker-v2-m3`.
+
+> 🐳 **Dockerfile** is set up for builds behind the GFW: Aliyun apt mirror + Tsinghua pip mirror are baked in, and `CMD` is `python -m uvicorn ...` (NOT bare `uvicorn` — uvicorn ≥0.49 removed `uvicorn.main.main`, so the `uvicorn` console entry point is broken; use `python -m uvicorn`). `requirements.txt` pins `typing_extensions>=4.12.0` because older versions (pulled in transitively) break `fastapi`/`anyio`/`exceptiongroup` imports.
 
 > ⚠️ The defaults above are the **code defaults** in `app/config.py`. Note that the shipped `.env.example` deliberately *flips* two of them to demo-friendlier values: it sets `USE_RERANK=true` and `ENABLE_AGENT_RESPONSE_CACHE=false`. Copying `.env.example` to `.env` therefore turns rerank ON and the L1 response cache OFF — the opposite of the code defaults. Keep this in mind when reasoning about observed behavior on a fresh checkout.
 
-Tests live in `tests/` (14 `test_*.py` files + shared `conftest.py`). `test_embeddings.py` hits the real SiliconFlow API and is auto-skipped without a key; everything else mocks `Retriever`/`LLM`/`build_chat_model` and runs offline.
+Tests live in `tests/` (18 `test_*.py` files + shared `conftest.py`). `test_embeddings.py` hits the real SiliconFlow API and is auto-skipped without a key; everything else mocks `Retriever`/`LLM`/`build_chat_model` and runs offline. Four of the files cover the Work Unit subsystem (`test_work_unit_store`, `test_work_units_api`, `test_chat_work_unit_candidate`, `test_mcp_work_unit_fragment`).
 
 ## Architecture
 
@@ -69,9 +73,13 @@ Layered backend under `app/` — request flow is `api → services → core`, wi
 api/        FastAPI APIRouter + Pydantic validation
   ├─ documents.py   /api/documents: upload / ingest / list / delete
   │                 (clears agent search cache + response cache on ingest & delete)
-  ├─ chat.py        /api/chat/query (module-level RAGService singleton)
-  └─ agent.py       /api/agent/query (module-level AgentService singleton)
-                   /api/agent/verify (standalone Evidence Verification)
+  ├─ chat.py        /api/chat/query (module-level RAGService singleton);
+  │                 builds work_unit_candidate(entry="rag") on each response
+  ├─ agent.py       /api/agent/query (module-level AgentService singleton);
+  │                 builds work_unit_candidate(entry="agent") on each response
+  │   /api/agent/verify (standalone Evidence Verification)
+  └─ work_units.py  /api/work_units: POST save / GET list(?entry=rag|agent|mcp) /
+                   GET {id} detail / DELETE {id} — manual Work Unit persistence
 services/   RAG business orchestration
   ├─ document_loader.py   load_document() -> List[PageContent] (PDF keeps page no.)
   ├─ splitter.py          clean_text + RecursiveCharacterTextSplitter (CN-aware),
@@ -81,7 +89,9 @@ services/   RAG business orchestration
   │                       overrides settings per-request (None = use .env config)
   ├─ reranker.py          SiliconFlow bge-reranker-v2-m3 cross-encoder client;
   │                       graceful degradation (fallback to vector order on API failure)
-  └─ rag_service.py       retrieve → refuse-if-empty → LLM.chat()
+  ├─ rag_service.py       retrieve → refuse-if-empty → LLM.chat()
+  └─ work_unit_store.py   WorkUnitStore: persists Work Units as JSON in WORK_UNIT_DIR
+                          (data/work_units/wu_<md5>.json); work_unit_id = "wu_"+md5(entry:question:time)[:16]
 agents/     Multi-Tool Agent layer (LangChain 1.0)
   ├─ agent_service.py     RemoteSensingAgentService (thin orchestration + error backstop
   │                       + L1 response cache + L2 LLM cache toggle)
@@ -111,20 +121,28 @@ utils/        file_utils (doc_id, save, lookup, SUPPORTED_EXTENSIONS), logger (s
 config.py     Settings (pydantic-settings) via @lru_cache get_settings() singleton
 schemas.py    All Pydantic request/response models (RAG + Agent); both ChatQueryRequest
               and AgentQueryRequest have use_rerank (Optional[bool], default None) and
-              AgentQueryRequest has include_trace flag (default true)
-main.py       create_app() factory + CORS + 3 routers (documents, chat, agent)
-frontend/     streamlit_app.py — RAG/Agent toggle, rerank checkbox, cache toggle,
-              tool-calls/trace/verification/timing panels
+              AgentQueryRequest has include_trace flag (default true). Work Unit models:
+              WorkUnitCandidate / WorkUnit / WorkUnitSaveRequest / WorkUnitSaveResponse /
+              WorkUnitListResponse. Both ChatQueryResponse and AgentQueryResponse carry
+              an optional work_unit_candidate field.
+main.py       create_app() factory + CORS + 4 routers (documents, chat, agent, work_units)
+frontend/     streamlit_app.py — QA-mode dropdown has 3 options: agent / rag / work_units
+              (the last opens the 🗂️ 工作单元 list+detail view). RAG/Agent panels: rerank
+              checkbox, cache toggle, tool-calls/trace/verification/timing panels, and a
+              "💾 保存为 Work Unit" button under each result.
 eval/         Standalone eval scripts + shared metrics.py + eval_questions.json
               (21 questions) + eval_questions_with_labels.json (labeled variant) +
               generate_eval_labels.py (label generator) + results/
 experiments/  Ablation experiments (see below)
-tests/        pytest unit tests (14 test files + conftest.py); mocks Retriever/LLM/build_chat_model
+tests/        pytest unit tests (18 test files + conftest.py); mocks Retriever/LLM/build_chat_model
 docs/         Design & ops docs: agent_trace_iteration.md, DEPLOY.md (deployment
-              incl. Cloudflare Tunnel), project_deep_dive.md
+              incl. Cloudflare Tunnel), project_deep_dive.md, work_unit_design.md,
+              mcp_design.md
 examples/     sample_docs/ (10 .md sample docs 01_..10_) + sample_questions.json
 mcp_server/   Standalone MCP server (server.py, FastMCP "remote-sensing-kb") — two
-              MCP @tools over the same domain knowledge as the Agent; shares core/metrics.py
+              MCP @tools over the same domain knowledge as the Agent; shares core/metrics.py.
+              Both tool responses additionally carry a non-persisted work_unit_fragment
+              (entry="mcp", fragment_id="frag_"+md5[:12]) — see docs/mcp_design.md.
 .mcp.json     Registers the MCP server: `python -m mcp_server.server`
 data/         Runtime data: chroma/ (persistent vector store), raw/ (uploaded raw files)
 ```
@@ -195,6 +213,14 @@ Key patterns shared by both ablation experiments:
 - **Domain tools explicitly avoid fabricating metrics**: `model_comparison_table` returns only the curated metadata (no mIoU/params/FLOPs numbers). `metrics_calculator` computes IoU/Precision/Recall/F1 from TP/FP/FN with zero-denominator guards via the shared `core/metrics.py::calculate_metric()` kernel. That same kernel is reused by the MCP server's `calculate_remote_sensing_metric` tool — keep the two callers in sync by editing `core/metrics.py`, not by duplicating the formula.
 
 - **LangChain integration**: `OpenAICompatibleLLMClient` and `SiliconFlowEmbeddingClient` implement `BaseChatModel`/`Embeddings` so they can drop into LangChain chains; all 7 Agent tools use `@tool`. The Agent is built via LangChain 1.0 `create_agent` — LangGraph `StateGraph` is *not* used directly.
+
+- **Work Unit is product-layer, never auto-persisted** — do not wire Work Unit saving into the RAG/Agent/MCP inference paths:
+  - `work_unit_candidate` (built in `chat.py` for `entry="rag"`, `agent.py` for `entry="agent"`) rides along on every query response but is only persisted when the frontend explicitly `POST /api/work_units`. Saving does **not** invalidate any cache (corpus/version unchanged).
+  - Persistence is JSON-per-unit in `WORK_UNIT_DIR` (`work_unit_store.py`), keyed by `work_unit_id = "wu_" + md5(entry:question:time)[:16]`. There is no feature flag — Work Units are always enabled.
+  - MCP `work_unit_fragment` is intentionally **not persisted** and does **not** call `WorkUnitStore`/RAG/LLM — it is a "raw material" that the host agent (Claude Code) or upper layer may assemble into a full Work Unit later. Keep MCP tools stateless and deterministic; full-Work-Unit assembly stays in the product layer.
+  - **v1 has no Replay**: `replay_payload` is reserved and saved, but no replay endpoint exists.
+
+- **Streamlit session_state re-render** (`frontend/streamlit_app.py`): the result block + "保存为 Work Unit" button live **outside** the `if st.button("🚀 提交问题")` block, reading from `st.session_state["last_result"]`. This is required because Streamlit reruns the whole script on any widget click — keeping rendering inside the submit `if` makes the save button vanish on the rerun (the original "click save does nothing" bug). Submit handler only stashes result/mode/question/elapsed into session_state; the re-render block draws the response + save button on every run. Preserve this structure when touching the frontend Q&A flow.
 
 ## Conventions
 
