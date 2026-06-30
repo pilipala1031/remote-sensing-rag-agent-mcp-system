@@ -4,6 +4,9 @@ pydantic>=2.6.0
 pydantic-settings>=2.2.0
 python-dotenv>=1.0.0
 python-multipart>=0.0.9
+# 显式钉版本：避免被 chromadb 等间接依赖压到旧版 typing_extensions，
+# 旧版缺少 TypeVar 等会导致 fastapi/anyio/exceptiongroup 导入失败。
+typing_extensions>=4.12.0
 
 # LangChain 1.0+
 langchain>=1.0.0
