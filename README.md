@@ -8,6 +8,16 @@
 
 ---
 
+## 演示视频 🎬
+
+项目完整功能演示（文档上传 → RAG / Agent 问答 → Work Unit 保存与复盘 → MCP 调用）已录制为视频，因体积较大未纳入仓库，可通过百度网盘获取（视频内容与仓库完全一致）：
+
+> 📁 **演示视频.mp4**
+> 🔗 链接：https://pan.baidu.com/s/1dpODre5Cg_ZlU-8blUAYlA?pwd=cx8t
+> 🔑 提取码：`cx8t`
+
+---
+
 ## 四类能力入口
 
 | 能力 | 面向对象 | 核心流程 | 价值 |
@@ -255,18 +265,6 @@ python -m mcp_server.server          # 独立运行（stdio）
 ```
 
 或在宿主 Agent 配置里引用根目录 `.mcp.json`（Claude Code 已内置 `remote-sensing-kb` server）。配好后，宿主 Agent 即可自主调用 `search_remote_sensing_kb`（知识库检索）和 `calculate_remote_sensing_metric`（指标计算）两个原子工具，把本项目当作它的工作单元工具箱。
-
----
-
-## 演示视频 🎬
-
-项目完整功能演示（文档上传 → RAG / Agent 问答 → Work Unit 保存与复盘 → MCP 调用）已录制为视频，因体积较大未纳入仓库，可通过百度网盘获取：
-
-> 📁 **演示视频.mp4**
-> 🔗 链接：https://pan.baidu.com/s/1dpODre5Cg_ZlU-8blUAYlA?pwd=cx8t
-> 🔑 提取码：`cx8t`
-
-> 视频与本仓库代码版本可能存在细微差异；文字版功能说明以上方「项目亮点」与「API 接口」章节为准。
 
 ---
 
