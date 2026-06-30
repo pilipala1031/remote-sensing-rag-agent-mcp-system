@@ -18,26 +18,16 @@
 
 ---
 
-## 四类能力入口
+## 四类能力入口，一套后端
 
-| 能力 | 面向对象 | 核心流程 | 价值 |
-| --- | --- | --- | --- |
-| **RAG** | 项目内部问答 | 检索 → 生成 → 来源引用 | 快速可信问答 |
-| **Agent** | 项目内部复杂任务 | LLM 选择工具 → 工具执行 → 证据校验 | 多步骤任务编排 |
-| **MCP Server** | Claude Code / Claude Desktop | 外部客户端调用检索/计算工具 | 把项目能力开放给外部 Agent |
-| **Work Unit v1** | 产品层 | 保存候选对象 → 列表查看 → 详情复盘 | 让对话可沉淀、可查看、可复盘 |
+同一个遥感知识后端提供三种**推理层**入口（从「固定流水线」到「自主 Agent」到「可被其他 Agent 编排的原子能力」），Work Unit 则横跨三者之上作为产品层把它们沉淀为可复盘对象：
 
----
-
-## 三种推理层入口，一套后端
-
-上面四类能力中，前三类（RAG / Agent / MCP）是**推理层**的三种入口，同一个遥感知识后端提供三种递进的使用方式 —— 从「固定流水线」到「自主 Agent」到「可被其他 Agent 编排的原子能力」；Work Unit 则横跨三者之上，作为产品层把它们沉淀为可复盘对象：
-
-| 入口 | 接口 | 编排者 | 流程 | 特点 |
+| 入口 | 接口 | 编排者 | 核心流程 | 特点 |
 | --- | --- | --- | --- | --- |
-| **普通 RAG** | `POST /api/chat/query` | 固定流水线 | 检索 → Prompt 拼接 → LLM 生成 | 流程固定，延迟低 |
-| **Multi-Tool Agent** | `POST /api/agent/query` | LLM 自主编排 | LLM 自主选择 7 种工具 → 基于工具结果生成 → 证据校验 | 可解释、可追溯、可扩展 |
-| **MCP Server** | `remote-sensing-kb` | 宿主 Agent（Claude/Cursor）编排 | 宿主 LLM 自主调用检索/计算原子工具 → 自行推理生成 | 把本项目能力变成其他 Agent 的「工具箱」 |
+| **普通 RAG** | `POST /api/chat/query` | 固定流水线 | 检索 → 阈值过滤 → [可选] Rerank → LLM 生成 → 来源引用/拒答 | 流程固定，延迟低 |
+| **Multi-Tool Agent** | `POST /api/agent/query` | LLM 自主编排 | 响应缓存 → `create_agent` → 工具选择（7 种）→ 生成 → Evidence Verification | 可解释、可追溯、可扩展 |
+| **MCP Server** | `remote-sensing-kb` | 宿主 Agent（Claude/Cursor）编排 | 宿主 LLM 调用检索/计算原子工具 → 自行推理生成 | 把本项目能力变成其他 Agent 的「工具箱」 |
+| **Work Unit v1** | `POST /api/work_units` | 产品层（手动触发） | 保存候选对象 → 列表查看 → 详情复盘 | 让对话可沉淀、可查看、可复盘 |
 
 ```
 文档上传 → 解析（PDF/TXT/MD）→ 文本清洗 → 递归切分 → Embedding → 向量入库
@@ -234,6 +224,8 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 streamlit run frontend/streamlit_app.py
 ```
 
+> 容器内统一用 `python -m uvicorn`（见 `Dockerfile` CMD）：uvicorn ≥0.49 移除了 `uvicorn.main.main`，裸 `uvicorn` 命令行入口已失效。`Dockerfile` 还内置了阿里云 apt 源与清华 PyPI 源，方便国内构建。
+
 ### 4. 使用
 
 **方式一：Streamlit 界面**（推荐）— 上传文档 → 一键入库 → 选择 RAG / Agent 模式 → 提问
@@ -373,7 +365,7 @@ remote-sensing-rag/
 │   ├── main.py                        # FastAPI 入口
 │   ├── config.py                      # Pydantic Settings 配置单例
 │   ├── schemas.py                     # 请求/响应模型
-│   ├── api/                           # HTTP 路由（documents / chat / agent）
+│   ├── api/                           # HTTP 路由（documents / chat / agent / work_units）
 │   ├── agents/                        # Agent 层
 │   │   ├── langchain_agent.py         # create_agent + run_langchain_agent + L2 LLM Cache
 │   │   ├── response_cache.py          # L1 Response Cache（TTL + max_size）
@@ -385,7 +377,7 @@ remote-sensing-rag/
 │   │   ├── prompts.py                 # Agent 系统提示词
 │   │   └── types.py                   # Pydantic 数据模型
 │   ├── core/                          # LLM / Embedding 客户端 + RAG Prompt
-│   ├── services/                      # RAG 编排 / 检索 / 向量库 / Rerank / 文档解析
+│   ├── services/                      # RAG 编排 / 检索 / 向量库 / Rerank / 文档解析 / Work Unit 存储
 │   └── utils/                         # 日志 / 文件工具
 ├── frontend/streamlit_app.py          # Streamlit 前端
 ├── mcp_server/server.py               # MCP Server（暴露给 Claude Code/Cursor 的原子工具）
@@ -393,7 +385,7 @@ remote-sensing-rag/
 ├── domain_data/                       # 结构化知识 JSON（datasets/models/metrics）
 ├── eval/                              # 评估 Harness + 21 道评估题
 ├── experiments/                       # 消融实验（参数 + Rerank）
-├── tests/                             # pytest 单元测试（14 文件 + conftest，415 个测试）
+├── tests/                             # pytest 单元测试（18 文件 + conftest，442 个测试）
 ├── examples/sample_docs/              # 10 篇遥感领域知识文档 + 示例问题
 ├── docs/                              # 设计文档（深度讲解 + Agent Trace 迭代记录 + 部署）
 ├── Dockerfile
@@ -412,7 +404,7 @@ pytest tests/test_agent_response_cache.py -v  # 响应缓存测试
 pytest tests/test_rag.py::test_rag_refuse_when_empty -v  # 单个测试
 ```
 
-415 个测试全部通过（1 个 skipped：`test_embeddings.py` 需真实 API），覆盖：文档解析、文本切分、RAG 拒答/正常路径、Agent 构建/执行/多工具解析、工具压缩/缓存、结构化查询、指标计算、查询分解、Evidence Verification、Agent API、**响应缓存（TTL/max_size/缓存隔离/异常不缓存/文档变更清空）**。
+442 个测试全部通过（1 个 skipped：`test_embeddings.py` 需真实 API），覆盖：文档解析、文本切分、RAG 拒答/正常路径、Agent 构建/执行/多工具解析、工具压缩/缓存、结构化查询、指标计算、查询分解、Evidence Verification、Agent API、**响应缓存（TTL/max_size/缓存隔离/异常不缓存/文档变更清空）**，以及 **Work Unit（存储 / API / 候选对象 / MCP fragment）**。
 
 ---
 
@@ -477,14 +469,14 @@ docker run -d --name rs-rag -p 8000:8000 --env-file .env -v $(pwd)/data:/app/dat
 
 ---
 
-## 面试说明：这个项目想证明什么
+## 设计理念
 
-这个项目不只是「一个 RAG demo」，而是用四类递进的能力入口，证明从「知识库问答」到「Agent 编排」到「能力开放」再到「产品抽象」的完整理解：
+这个项目用四类递进的能力入口，串起从「知识库问答」到「Agent 编排」到「能力开放」再到「产品抽象」的完整链路：
 
-- **RAG 证明知识库问答能力**：端到端流水线（解析→切分→Embedding→检索→生成）+ 3 层防幻觉（阈值拒答 / Prompt 约束 / 拒答模板）+ 来源引用；
-- **Agent 证明多工具编排能力**：LangChain 1.0 `create_agent` + 7 个 `@tool`（检索 / 分解 / 结构化查询 / 模型对比 / 指标查询 / 指标计算）+ ReAct 循环 + 工具选择门控；
-- **MCP Server 证明能把项目能力开放给 Claude Code**：明确**没有**把整个 Agent 包成 MCP tool（避免 Agent-in-Agent 嵌套），而是暴露两个无状态、确定性的原子工具（检索 + 计算），让宿主 Agent 自己负责编排与生成（设计取舍见 [`docs/mcp_design.md`](docs/mcp_design.md)）；
-- **Work Unit 证明对 agentic OS / thinking space 的产品理解**：把一次对话沉淀为可保存、可查看、可复盘的结构化工作单元，并刻意把「沉淀」做成产品层对象（手动保存、不污染推理层），而非又一个 Agent；
+- **RAG**：端到端流水线（解析→切分→Embedding→检索→生成）+ 3 层防幻觉（阈值拒答 / Prompt 约束 / 拒答模板）+ 来源引用；
+- **Agent**：LangChain 1.0 `create_agent` + 7 个 `@tool`（检索 / 分解 / 结构化查询 / 模型对比 / 指标查询 / 指标计算）+ ReAct 循环 + 工具选择门控；
+- **MCP Server**：刻意**没有**把整个 Agent 包成 MCP tool（避免 Agent-in-Agent 嵌套），而是暴露两个无状态、确定性的原子工具（检索 + 计算），让宿主 Agent 自己负责编排与生成（设计取舍见 [`docs/mcp_design.md`](docs/mcp_design.md)）；
+- **Work Unit**：把一次对话沉淀为可保存、可查看、可复盘的结构化工作单元，并刻意把「沉淀」做成产品层对象（手动保存、不污染推理层），而非又一个 Agent；
 - **工程深度**：Evidence Verification（off / sync / deferred 三模式 + lightweight / full）、双层缓存（L1 响应缓存 + L2 LLM 缓存）、Cross-encoder Rerank 消融实验（source_recall +15.74%、MRR +10%）、参数消融、442 个单元测试（全链路 mock 外部 API，离线可跑）。
 
 > 边界声明：Work Unit v1 **不含 Replay**（`replay_payload` 已预留但未实现端点）；MCP 工具**不落盘**完整 Work Unit（只返回 fragment）。两者均属 v2 范围，详见 [Roadmap](#roadmap)。
