@@ -258,6 +258,18 @@ python -m mcp_server.server          # 独立运行（stdio）
 
 ---
 
+## 演示视频 🎬
+
+项目完整功能演示（文档上传 → RAG / Agent 问答 → Work Unit 保存与复盘 → MCP 调用）已录制为视频，因体积较大未纳入仓库，可通过百度网盘获取：
+
+> 📁 **演示视频.mp4**
+> 🔗 链接：https://pan.baidu.com/s/1dpODre5Cg_ZlU-8blUAYlA?pwd=cx8t
+> 🔑 提取码：`cx8t`
+
+> 视频与本仓库代码版本可能存在细微差异；文字版功能说明以上方「项目亮点」与「API 接口」章节为准。
+
+---
+
 ## 快速公网演示（Cloudflare Tunnel）
 
 > 适用场景：**临时演示**，给不在同一局域网的同事/朋友/老师远程查看你的前端界面。**不适合长期生产部署**。完整文档见 [`docs/DEPLOY.md`](docs/DEPLOY.md)。

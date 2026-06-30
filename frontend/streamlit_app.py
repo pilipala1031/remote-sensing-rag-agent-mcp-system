@@ -1234,13 +1234,34 @@ if st.button("🚀 提交问题") and question.strip():
         # _run_* 函数内部已通过 st.error 展示错误，这里直接终止
         st.stop()
 
-    # ------- 耗时展示 -------
-    st.caption(f"⏱️ 本次{'Agent' if qa_mode == 'agent' else 'RAG'}请求耗时：{elapsed:.2f} 秒")
+    # 将本次结果缓存到 session_state，使结果区与「保存为 Work Unit」按钮能跨重跑存活。
+    # 点击任何按钮（包括保存按钮）都会触发 Streamlit 重跑，提交瞬间已过，
+    # 上面整段 if 不会重新执行；此时靠下方重渲染区从缓存恢复结果与保存按钮。
+    st.session_state["last_result"] = result_data
+    st.session_state["last_qa_mode"] = qa_mode
+    st.session_state["last_question"] = question.strip()
+    st.session_state["last_show_debug"] = show_debug
+    st.session_state["last_elapsed"] = elapsed
 
-    if qa_mode == "agent":
-        _render_agent_response(result_data, show_debug, elapsed, question.strip())
+
+# ====== 结果区（跨重跑存活） ======
+# 无论本次重跑是「提交问题」触发还是「保存为 Work Unit」等其他按钮触发，
+# 只要 session_state 里有最近一次成功查询的结果，就统一从这里渲染结果与保存按钮。
+# 这样保存按钮不再依赖「🚀 提交问题」被按下的那一瞬间，点击保存后页面重跑仍能正常 POST。
+_last_result = st.session_state.get("last_result")
+if _last_result is not None:
+    _last_qa_mode = st.session_state.get("last_qa_mode", "rag")
+    _last_show_debug = st.session_state.get("last_show_debug", False)
+    _last_question = st.session_state.get("last_question", "")
+    _last_elapsed = st.session_state.get("last_elapsed", 0.0)
+
+    # ------- 耗时展示 -------
+    st.caption(f"⏱️ 本次{'Agent' if _last_qa_mode == 'agent' else 'RAG'}请求耗时：{_last_elapsed:.2f} 秒")
+
+    if _last_qa_mode == "agent":
+        _render_agent_response(_last_result, _last_show_debug, _last_elapsed, _last_question)
     else:
-        _render_rag_response(result_data)
+        _render_rag_response(_last_result)
 
     # Work Unit：在结果下方提供「保存为 Work Unit」按钮（不自动保存）
-    _render_save_work_unit_button(result_data)
+    _render_save_work_unit_button(_last_result)
