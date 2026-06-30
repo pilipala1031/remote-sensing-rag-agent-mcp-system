@@ -13,8 +13,8 @@
 项目完整功能演示（文档上传 → RAG / Agent 问答 → Work Unit 保存与复盘 → MCP 调用）已录制为视频，因体积较大未纳入仓库，可通过百度网盘获取（视频内容与仓库完全一致）：
 
 > 📁 **演示视频.mp4**
-> 🔗 链接：https://pan.baidu.com/s/1dpODre5Cg_ZlU-8blUAYlA?pwd=cx8t
-> 🔑 提取码：`cx8t`
+> 🔗 链接：https://pan.baidu.com/s/1fWVB9S8HiePHmQudViGQ7A?pwd=8xat
+> 🔑 提取码：`8xat`
 
 ---
 
