@@ -74,3 +74,6 @@ build/
 # ===== 大体积媒体文件（不纳入仓库，另行通过网盘/Releases 分享）=====
 *.mp4
 演示视频.mp4
+
+# cloudflared 可执行文件（本地用，不入库）
+cloudflared.exe
